@@ -14,17 +14,17 @@ class User_Landing_process:
         app.window.mainloop()
 
     @staticmethod
-    def items_button_handle(obj):
+    def films_button_handle(obj):
         obj.window.destroy()
         app = usmv.User_Main_View()
-        app.click_button('items')
+        app.click_button('films')
         app.window.mainloop()
 
     @staticmethod
-    def shop_button_handle(obj):
+    def buytickets_button_handle(obj):
         obj.window.destroy()
         app = usmv.User_Main_View()
-        app.click_button('shop')
+        app.click_button('buytickets')
         app.window.mainloop()
 
     @staticmethod
