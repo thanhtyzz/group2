@@ -4,7 +4,7 @@ from pathlib import Path
 import Modules.Login.Login_Process as lgp
 
 
-class LoginView:
+class Login_View:
     def __init__(self):
         self.window = Tk()
         # get screen width and height
