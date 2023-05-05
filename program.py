@@ -1,5 +1,5 @@
 import Modules.Login.Login_View as lgv
 if __name__ == "__main__":
     print("hehehehe")
-    app = lgv.Login_View()
+    app = lgv.LoginView()
     app.window.mainloop()

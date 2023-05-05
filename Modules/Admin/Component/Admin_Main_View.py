@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
-import Modules.Admin.Component.Products.Admin_Products_create as apc
+import Modules.Admin.Component.Films.Admin_Films_create as apc
 import Modules.Admin.Component.Inventory.Admin_Inventory_create as aic
 import Modules.Admin.Component.Sales.Admin_Sales_create as asc
 import Modules.Admin.Component.Users.Admin_User_create as auc

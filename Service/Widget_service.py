@@ -1,4 +1,5 @@
 import tkinter
+from tkinter import ttk
 tkinter_umlauts = ['odiaeresis', 'adiaeresis', 'udiaeresis',
                    'Odiaeresis', 'Adiaeresis', 'Udiaeresis', 'ssharp']
 

@@ -1,6 +1,6 @@
 import Api.Login_Api as Login_Api
 from tkinter import messagebox
-import Modules.Signup.Sign_up_View as suv
+import Modules.Signup.Signup_View as suv
 from tkinter import *
 import Modules.Admin.Admin_Landing_View as av
 import Modules.User.User_Landing_View as uv
