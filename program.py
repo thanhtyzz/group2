@@ -1,5 +1,3 @@
-import sys
-sys.path.append("C:/Users/User/group2")
 from Modules.Login import Login_View as lgv
 if __name__ == "__main__":
     print("hehehehe")
