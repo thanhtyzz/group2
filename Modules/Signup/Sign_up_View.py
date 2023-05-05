@@ -23,7 +23,7 @@ class LoginView:
         self.canvas = Canvas(self.window, bg="#FFFFFF", height=492, width=685, bd=0, highlightthickness=0, relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        assets_path = Path(r"D:\Study\HK2\KY THUAT LAP TRINH\Do_an-cuoi_ki_Nhom2\File\Images\Signup")
+        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Signup")
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
         self.login_image = PhotoImage(file=assets_path / "Button_Login.png")
@@ -42,22 +42,22 @@ class LoginView:
                                command=lambda: print("signup_button_1 clicked"), relief="flat")
         self.signup_button_1.place(x=607.0, y=12.0, width=70.0, height=33.0)
 
-        self.entry_bg_1 = self.canvas.create_image(354.0, 230.0, image=self.entry_image_1)
+        self.entry_bg_1 = self.canvas.create_image(354.0, 230.0, image=self.entry_image)
         self.entry_1 = Entry(bd=0, bg="#F8EBD1", fg="#000716", highlightthickness=0)
         self.entry_1.place(x=268.0, y=214.0, width=172.0, height=30.0)
 
-        self.entry_bg_2 = self.canvas.create_image(354.0, 293.0, image=self.entry_image_2)
+        self.entry_bg_2 = self.canvas.create_image(354.0, 293.0, image=self.entry_image)
         self.entry_2 = Entry(bd=0, bg="#F8EBD1", fg="#000716", highlightthickness=0)
         self.entry_2.place(x=268.0, y=277.0, width=172.0, height=30.0)
 
-        self.entry_bg_3 = self.canvas.create_image(354.0, 355.0, image=self.entry_image_3)
+        self.entry_bg_3 = self.canvas.create_image(354.0, 355.0, image=self.entry_image)
         self.entry_3 = Entry(bd=0, bg="#F8EBD1", fg="#000716", highlightthickness=0)
         self.entry_3.place(x=268.0, y=339.0, width=172.0, height=30.0)
 
         self.trendingnow_button = Button(image=self.trendingnow_image, borderwidth=0, highlightthickness=0,
                                command=lambda: print("trendingnow_button clicked"), relief="flat")
         self.trendingnow_button.place(x=465.0, y=427.0, width=203.0, height=55.0)
-        # Nút trending now hiện những bộ phim đang trend
+        # The 'Trending Now' button displays the movies that are currently trending
 
         self.signup_button_2 = Button(image=self.login_image_2, borderwidth=0, highlightthickness=0,
                                command=lambda: signup_process.Sign_up_Process.signup_button_handle(self))
