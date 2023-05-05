@@ -17,9 +17,9 @@ class User_Shop_process:
         check = api.add_item_to_cart(
             obj.search_entry.get(), obj.quantity_entry_bframe.get())
         if check == -1:
-            messagebox.showinfo("Error", "Không tìm được phim này")
+            messagebox.showinfo("Error", "Cannot find this movie")
         elif check == -2:
-            messagebox.showinfo("Error", "Không đủ số lượng vé")
+            messagebox.showinfo("Error", "Not enough tickets available")
             obj.search_entry.delete(0, END)
             obj.quantity_entry_bframe.delete(0, END)
         elif check == -3:
@@ -29,15 +29,15 @@ class User_Shop_process:
             User_Shop_process.refresh_treeview(obj)
             User_Shop_process.get_total_ammount(obj)
             obj.price.set(api.temp)
-            messagebox.showinfo("Thành công", "Item updated")
+            messagebox.showinfo("Success", "Item updated")
         else:
             # add check to treeview
             obj.tree.insert("", "end", values=(check['Film_id'], check['Film'], check['Quantity'], check['Price']))
-            obj.product_id.set(check["Film_id"])
-            obj.product_name.set(check["Film"])
+            obj.film_id.set(check["Film_id"])
+            obj.film.set(check["Film"])
             obj.quantity.set(check["Quantity"])
             obj.price.set(check["Price"])
-            messagebox.showinfo("Success", "Đã thêm vé vào giỏ hàng")
+            messagebox.showinfo("Success", "Successfully added ticket to cart")
             User_Shop_process.get_total_ammount(obj)
 
     @staticmethod
@@ -45,22 +45,22 @@ class User_Shop_process:
         try:
             # get choosen data of obj.tree
             data = obj.tree.item(obj.tree.selection())['values']
-            # xóa dữ liệu vé khỏi giỏ hàng
+            # removing ticket data from cart
             api = Api.User_Api()
             api.remove_item_from_cart(data[1])
             # remove data from treeview
             obj.tree.delete(obj.tree.selection())
             # update total amount
             User_Shop_process.get_total_ammount(obj)
-            obj.product_id.set("")
-            obj.product_name.set("")
+            obj.film_id.set("")
+            obj.film.set("")
             obj.quantity.set("")
             obj.price.set("")
             obj.search_entry.delete(0, END)
             obj.quantity_entry.delete(0, END)
-            messagebox.showinfo("Success", "Đã xóa vé khỏi giỏ hàng")
+            messagebox.showinfo("Success", "Successfully removed ticket from cart")
         except:
-            messagebox.showinfo("Error", "Không có vé nào được chọn")
+            messagebox.showinfo("Error", "No ticket selected")
 
     @staticmethod
     def get_total_ammount(obj):
@@ -83,8 +83,8 @@ class User_Shop_process:
                 obj.tree.delete(item)
 
             # remove all data in form frame
-            obj.product_id.set("")
-            obj.product_name.set("")
+            obj.film_id.set("")
+            obj.film.set("")
             obj.quantity.set("")
             obj.price.set("")
             obj.total.set("")
@@ -95,8 +95,8 @@ class User_Shop_process:
                     item.delete(0, END)
         else:
             messagebox.showinfo("Error", "Empty cart")
-            obj.product_id.set("")
-            obj.product_name.set("")
+            obj.film_id.set("")
+            obj.film.set("")
             obj.quantity.set("")
             obj.price.set("")
             obj.total.set("")
