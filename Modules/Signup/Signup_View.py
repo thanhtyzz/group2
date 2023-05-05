@@ -59,7 +59,7 @@ class Signup_View:
         self.trendingnow_button.place(x=465.0, y=427.0, width=203.0, height=55.0)
         # The 'Trending Now' button displays the movies that are currently trending
 
-        self.signup_button_2 = Button(image=self.login_image_2, borderwidth=0, highlightthickness=0,
+        self.signup_button_2 = Button(image=self.signup_image_2, borderwidth=0, highlightthickness=0,
                                command=lambda: signup_process.Sign_up_Process.signup_button_handle(self))
         self.signup_button_2.place(x=315.0, y=391.0, width=78.0, height=31.0)
         self.window.resizable(0, 0)
