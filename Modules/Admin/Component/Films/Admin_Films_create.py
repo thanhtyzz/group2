@@ -22,7 +22,7 @@ class Admin_Films_create:
         self.canvas = Canvas(self.window, bg="#FFFFFF", height=492, width=685, bd=0, highlightthickness=0, relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        assets_path = Path(r"D:\Study\HK2\KY THUAT LAP TRINH\Do_an-cuoi_ki_Nhom2\File\Images\Admin\Films")
+        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Component\Films")
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
         self.films_image = PhotoImage(file=assets_path / "Button_Films.png")
@@ -38,27 +38,27 @@ class Admin_Films_create:
         self.background = self.background_img.create_image(342.0, 246.0, image=self.background_img)
 
         self.films_button = Button(image=self.films_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: app.Admin_Films_process.films_button_handle(self))
+                               command=lambda: self.click_button("films"))
         self.films_button.place(x=10.0, y=124.0, width=97.0, height=37.0)
 
         self.inventory_button = Button(image=self.inventory_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: app.Admin_Films_process.inventory_button_handle(self))
+                               command=lambda: self.click_button("inventory"))
         self.inventory_button.place(x=118.0, y=125.0, width=102.0, height=35.0)
 
         self.sales_button = Button(image=self.sales_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: app.Admin_Films_process.sales_button_handle(self))
+                               command=lambda: self.click_button("sales"))
         self.sales_button.place(x=233.0, y=126.0, width=97.0, height=33.0)
 
         self.users_button = Button(image=self.users_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: app.Admin_Films_process.users_button_handle(self))
+                               command=lambda: self.click_button("users"))
         self.users_button.place(x=349.0, y=126.0, width=97.0, height=33.0)
 
         self.switch_button = Button(image=self.switch_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: app.Admin_Films_process.switch_button_handle(self))
+                               command=lambda: self.switch_account())
         self.switch_button.place(x=461.0, y=126.0, width=97.0, height=33.0)
 
         self.exit_button = Button(image=self.exit_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: app.Admin_Films_process.exit_button_handle(self))
+                               command=lambda: self.exit_button())
         self.exit_button.place(x=576.0, y=126.0, width=97.0, height=33.0)
 
 
