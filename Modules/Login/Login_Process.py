@@ -43,5 +43,5 @@ class Login_Process:
     @staticmethod
     def signup_button_handle(obj):
         obj.window.destroy()
-        app = suv.Sign_up_View()
+        app = suv.Signup_View()
         app.window.mainloop()
