@@ -10,69 +10,69 @@ class Sign_up_Process:
     @staticmethod
     def login_button_handle(obj):
         obj.window.destroy()
-        app = loginview.Login_View()
+        app = loginview.LoginView()
         app.window.mainloop()
 
     @staticmethod 
     def signup_button_handle(obj): 
-        username = obj.username_entry.get()
+        username = obj.entry_3.get()
         password = obj.password_entry.get()
         reenterpassword = obj.reenterpass_entry.get()
         api = Signup_Api.Signup_Api()
         error = api.check_user_signup(username,password,reenterpassword)
-        standard_pass = api.check_password_standard(password, username)
+        standard_pass = api.check_user_signup(password, username)
 
         if error == -1:
             mbox.showerror('Warning','Invalid User Input')
-            obj.username_entry.delete(0, END)
-            obj.password_entry.delete(0, END)
-            obj.reenterpass_entry.delete(0, END)
+            obj.entry_3.delete(0, END)
+            obj.entry_1.delete(0, END)
+            obj.entry_2.delete(0, END)
 
         elif error == -2:
             mbox.showerror('Warning', 'Password is not the same')
-            obj.username_entry.delete(0, END)
-            obj.password_entry.delete(0, END)
-            obj.reenterpass_entry.delete(0, END)
+            obj.entry_3.delete(0, END)
+            obj.entry_1.delete(0, END)
+            obj.entry_2.delete(0, END)
 
         elif error == -3:
             mbox.showerror('Warning', 'Existed user')
-            obj.username_entry.delete(0, END)
-            obj.password_entry.delete(0, END)
-            obj.reenterpass_entry.delete(0, END)
+            obj.entry_3.delete(0, END)
+            obj.entry_1.delete(0, END)
+            obj.entry_2.delete(0, END)
             
         else:
             if standard_pass == 1:
                 mbox.showerror('Weak password', 'Password is too short')
-                obj.username_entry.delete(0, END)
-                obj.password_entry.delete(0, END)
-                obj.reenterpass_entry.delete(0, END)
+                obj.entry_3.delete(0, END)
+                obj.entry_1.delete(0, END)
+                obj.entry_2.delete(0, END)
             if standard_pass == 2:
                 mbox.showerror('Password does not meet criteria', 'No uppercase letters')
-                obj.username_entry.delete(0, END)
-                obj.password_entry.delete(0, END)
-                obj.reenterpass_entry.delete(0, END)
+                obj.entry_3.delete(0, END)
+                obj.entry_1.delete(0, END)
+                obj.entry_2.delete(0, END)
             if standard_pass == 3:
                 mbox.showerror('Password does not meet criteria', 'No lowercase letters')
-                obj.username_entry.delete(0, END)
-                obj.password_entry.delete(0, END)
-                obj.reenterpass_entry.delete(0, END)
+                obj.entry_3.delete(0, END)
+                obj.entry_1.delete(0, END)
+                obj.entry_2.delete(0, END)
             if standard_pass == 4:
                 mbox.showerror('Password does not meet criteria', 'Need special characters')
-                obj.username_entry.delete(0, END)
-                obj.password_entry.delete(0, END)
-                obj.reenterpass_entry.delete(0, END)
+                obj.entry_3.delete(0, END)
+                obj.entry_1.delete(0, END)
+                obj.entry_2.delete(0, END)
             if standard_pass == 5:
                 mbox.showerror('Password does not meet criteria', 'Need letters')
-                obj.username_entry.delete(0, END)
-                obj.password_entry.delete(0, END)
-                obj.reenterpass_entry.delete(0, END)
+                obj.entry_3.delete(0, END)
+                obj.entry_1.delete(0, END)
+                obj.entry_2.delete(0, END)
             if standard_pass == 6:
                 mbox.showerror('Password does not meet criteria', 'Need numbers')
-                obj.username_entry.delete(0, END)
-                obj.password_entry.delete(0, END)
-                obj.reenterpass_entry.delete(0, END)
+                obj.entry_3.delete(0, END)
+                obj.entry_1.delete(0, END)
+                obj.entry_2.delete(0, END)
             else:
                 mbox.showinfo('Success', 'Account created successfully')
-                obj.username_entry.delete(0, END)
-                obj.password_entry.delete(0, END)
-                obj.reenterpass_entry.delete(0, END)
+                obj.entry_3.delete(0, END)
+                obj.entry_1.delete(0, END)
+                obj.entry_2.delete(0, END)
