@@ -22,7 +22,7 @@ class Admin_View:
         self.canvas = Canvas(self.window, bg="#FFFFFF", height=492, width=685, bd=0, highlightthickness=0, relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        assets_path = Path(r"D:\do-an-cuoi-ki-nhom2\Images\Admin\LandingPage")
+        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\LandingPage")
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
         self.logout_image = PhotoImage(file=assets_path / "Button_Logout.png")
@@ -45,7 +45,7 @@ class Admin_View:
                                command=lambda: ap.Admin_Process.inventory_button_handle(self))
         self.inventory_button.place(x=208.0, y=341.0, width=101.0, height=36.0)
 
-        self.sales_button = Button(image=self.login_image_2, borderwidth=0, highlightthickness=0,
+        self.sales_button = Button(image=self.sales_image, borderwidth=0, highlightthickness=0,
                                command=lambda: ap.Admin_Process.sales_button_handle(self))
         self.sales_button.place(x=51.0, y=400.0, width=101.0, height=36.0)
 
