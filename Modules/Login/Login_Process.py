@@ -10,23 +10,23 @@ class Login_Process:
 
     @staticmethod
     def confirm_button_handle(obj):
-        username = obj.name_entry.get()
-        password = obj.password_entry.get()
+        username = obj.entry_1.get()
+        password = obj.entry_2.get()
         api = Login_Api.Login_Api()
         c = api.check_user_login(username, password)
         if c == -1:
             messagebox.showerror("Warning", "Invalid User Input")
-            obj.name_entry.delete(0, END)
-            obj.password_entry.delete(0, END)
+            obj.entry_1.delete(0, END)
+            obj.entry_2.delete(0, END)
 
         elif c == -2:
             messagebox.showerror("Warning", "User not found")
-            obj.name_entry.delete(0, END)
-            obj.password_entry.delete(0, END)
+            obj.entry_1.delete(0, END)
+            obj.entry_2.delete(0, END)
 
         elif c == -3:
             messagebox.showerror("Warning", "Wrong password")
-            obj.password_entry.delete(0, END)
+            obj.entry_2.delete(0, END)
         else:
             if c == "Admin":
                 messagebox.showinfo("MB", "Welcome Admin")
