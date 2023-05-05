@@ -38,28 +38,28 @@ else:
     db = client['G4KTLT']
     print("Database created")
 
-#check there was collection named users in db
-def import_user_data():
-    with open("./Data/users.json", "r") as f:
-        data = f.read()
+# #check there was collection named users in db
+# def import_user_data():
+#     with open("./Data/users.json", "r") as f:
+#         data = f.read()
 
-    for element in eval(data):
-        #check element is in collection
-        if element["username"] not in db["users"].find({}).distinct("username"):
-            db["users"].insert_one(element)
-        else:
-            continue
-    print("Imported Users' data successfully")
-if "users" in db.list_collection_names():
-    print("Collection Users already existed")
-    #import data from ./Data/users.json
-    import_user_data()
+#     for element in eval(data):
+#         #check element is in collection
+#         if element["username"] not in db["users"].find({}).distinct("username"):
+#             db["users"].insert_one(element)
+#         else:
+#             continue
+#     print("Imported Users' data successfully")
+# if "users" in db.list_collection_names():
+#     print("Collection Users already existed")
+#     #import data from ./Data/users.json
+#     import_user_data()
 
-else:
-    collection = db.create_collection("users")
-    print("Collection Users created")
-    #import data from ./Data/users.json to collection
-    import_user_data()
+# else:
+#     collection = db.create_collection("users")
+#     print("Collection Users created")
+#     #import data from ./Data/users.json to collection
+#     import_user_data()
 
 #check there was collection named warehouse in db
 def import_warehouse_data():
@@ -68,7 +68,7 @@ def import_warehouse_data():
 
     for element in eval(data):
         #check element is in collection
-        if element["Product_id"] not in db["warehouse"].find({}).distinct("Product_id"):
+        if element["Film_ID"] not in db["warehouse"].find({}).distinct("Film_ID"):
             db["warehouse"].insert_one(element)
         else:
             continue
@@ -92,7 +92,7 @@ def import_invoice_data():
 
     for element in eval(data):
         #check element is in collection
-        if element["Invoice_Id"] not in db["invoices"].find({}).distinct("Invoice_Id"):
+        if element["Invoice_ID"] not in db["invoices"].find({}).distinct("Invoice_ID"):
             db["invoices"].insert_one(element)
         else:
             continue
