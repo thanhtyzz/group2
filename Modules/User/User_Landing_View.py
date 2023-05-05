@@ -31,7 +31,7 @@ class User_Landing_View:
         self.films_image = PhotoImage(file=assets_path / "Button_Films.png")
         self.buytickets_image = PhotoImage(file=assets_path / "Button_BuyTickets.png")
 
-        self.background = self.background_img.create_image(342.0, 246.0, image=self.background_img)
+        self.background = self.canvas.create_image(342.0, 246.0, image=self.background_img)
 
         self.logout_button = Button(image=self.logout_image, borderwidth=0, highlightthickness=0,
                                     command=lambda: up.User_Landing_process.log_out_button_handle(self))
