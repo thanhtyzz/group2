@@ -6,7 +6,7 @@ from tkinter import END, messagebox as mbox
 
 class Sign_up_Process: 
     
-    # Hiện màn hình lựa chọn giữa đăng nhập (login) và đăng kí (signup)
+    # The screen displays a choice between "login" and "signup".
     @staticmethod
     def login_button_handle(obj):
         obj.window.destroy()
@@ -42,32 +42,32 @@ class Sign_up_Process:
             
         else:
             if standard_pass == 1:
-                mbox.showerror('Mật khẩu yếu', 'Kí tự quá ngắn')
+                mbox.showerror('Weak password', 'Password is too short')
                 obj.username_entry.delete(0, END)
                 obj.password_entry.delete(0, END)
                 obj.reenterpass_entry.delete(0, END)
             if standard_pass == 2:
-                mbox.showerror('Mật khẩu chưa đủ tiêu chuẩn', 'Không có chữ cái viết hoa')
+                mbox.showerror('Password does not meet criteria', 'No uppercase letters')
                 obj.username_entry.delete(0, END)
                 obj.password_entry.delete(0, END)
                 obj.reenterpass_entry.delete(0, END)
             if standard_pass == 3:
-                mbox.showerror('Mật khẩu chưa đủ tiêu chuẩn', 'Không có chữ cái viết thường')
+                mbox.showerror('Password does not meet criteria', 'No lowercase letters')
                 obj.username_entry.delete(0, END)
                 obj.password_entry.delete(0, END)
                 obj.reenterpass_entry.delete(0, END)
             if standard_pass == 4:
-                mbox.showerror('Mật khẩu chưa đủ tiêu chuẩn', 'Cần thêm kí tự đặc biệt')
+                mbox.showerror('Password does not meet criteria', 'Need special characters')
                 obj.username_entry.delete(0, END)
                 obj.password_entry.delete(0, END)
                 obj.reenterpass_entry.delete(0, END)
             if standard_pass == 5:
-                mbox.showerror('Mật khẩu chưa đủ tiêu chuẩn', 'Cần thêm kí tự chữ cái')
+                mbox.showerror('Password does not meet criteria', 'Need letters')
                 obj.username_entry.delete(0, END)
                 obj.password_entry.delete(0, END)
                 obj.reenterpass_entry.delete(0, END)
             if standard_pass == 6:
-                mbox.showerror('Mật khẩu chưa đủ tiêu chuẩn', 'Cần thêm chữ số')
+                mbox.showerror('Password does not meet criteria', 'Need numbers')
                 obj.username_entry.delete(0, END)
                 obj.password_entry.delete(0, END)
                 obj.reenterpass_entry.delete(0, END)
