@@ -36,11 +36,11 @@ class Login_View:
 
         self.login_button_1 = Button(image=self.login_image_1, borderwidth=0, highlightthickness=0,
                                command=lambda: print("button_1 clicked"), relief="flat")
-        self.login_button_1.place(x=610.0, y=12.0, width=64.0, height=33.0)
+        self.login_button_1.place(x=532.0, y=12.0, width=69.0, height=33.0)
 
         self.signup_button = Button(image=self.signup_image, borderwidth=0, highlightthickness=0,
                                command=lambda: lgp.Login_Process.signup_button_handle(self))
-        self.signup_button.place(x=532.0, y=12.0, width=69.0, height=33.0)
+        self.signup_button.place(x=610.0, y=12.0, width=64.0, height=33.0)
 
         self.entry_bg_1 = self.canvas.create_image(354.0, 246.5, image=self.entry_image)
         self.entry_1 = Entry(bd=0, bg="#F8EBD1", fg="#000716", highlightthickness=0)
