@@ -4,7 +4,7 @@ from tkinter import messagebox
 import Api.User_Api as Api
 import Service.Widget_service as ws
 
-class User_Shop_process:
+class User_Buytickets_process:
 
     @staticmethod
     def add_to_cart(obj):
@@ -25,8 +25,8 @@ class User_Shop_process:
             messagebox.showinfo("Error", "Error quantity")
         elif check == -4:
 
-            User_Shop_process.refresh_treeview(obj)
-            User_Shop_process.get_total_ammount(obj)
+            User_Buytickets_process.refresh_treeview(obj)
+            User_Buytickets_process.get_total_ammount(obj)
             obj.price.set(api.temp)
             messagebox.showinfo("Success", "Item updated")
         else:
@@ -37,7 +37,7 @@ class User_Shop_process:
             obj.quantity.set(check["Quantity"])
             obj.price.set(check["Price"])
             messagebox.showinfo("Success", "Successfully added ticket to cart")
-            User_Shop_process.get_total_ammount(obj)
+            User_Buytickets_process.get_total_ammount(obj)
 
     @staticmethod
     def remove_from_cart(obj):
@@ -50,7 +50,7 @@ class User_Shop_process:
             # remove data from treeview
             obj.tree.delete(obj.tree.selection())
             # update total amount
-            User_Shop_process.get_total_ammount(obj)
+            User_Buytickets_process.get_total_ammount(obj)
             obj.film_id.set("")
             obj.film.set("")
             obj.quantity.set("")
