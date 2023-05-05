@@ -10,7 +10,7 @@ class User_Landing_process:
     @staticmethod
     def log_out_button_handle(obj):
         obj.window.destroy()
-        app = lgv.Login_View()
+        app = lgv.LoginView()
         app.window.mainloop()
 
     @staticmethod
@@ -31,7 +31,7 @@ class User_Landing_process:
     def log_out_button_handle(obj):
         if messagebox.askyesno("Change Account", "Are you sure you want to change account?"):
             obj.window.destroy()
-            app = lgv.Login_View()
+            app = lgv.LoginView()
             app.window.mainloop()
         else:
             return
