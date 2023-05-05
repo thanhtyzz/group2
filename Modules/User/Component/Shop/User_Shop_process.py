@@ -1,26 +1,25 @@
 from tkinter import *
 from tkinter import ttk
-import Api.User_Api as Api
 from tkinter import messagebox
+import Api.Use_api as Api
 import Service.Widget_service as ws
-import datetime
-
+import datatime
 
 class User_Shop_process:
 
     @staticmethod
     def add_to_cart(obj):
 
-        # add to cart
+        #add to cart
         obj.quantity.set(obj.quantity_entry.get())
         obj.price.set(obj.price_entry.get())
         api = Api.User_Api()
         check = api.add_item_to_cart(
             obj.search_entry.get(), obj.quantity_entry_bframe.get())
         if check == -1:
-            messagebox.showinfo("Error", "Product not found")
+            messagebox.showinfo("Error", "Không tìm được phim này")
         elif check == -2:
-            messagebox.showinfo("Error", "Quantity not available")
+            messagebox.showinfo("Error", "Không đủ số lượng vé")
             obj.search_entry.delete(0, END)
             obj.quantity_entry_bframe.delete(0, END)
         elif check == -3:
@@ -30,16 +29,15 @@ class User_Shop_process:
             User_Shop_process.refresh_treeview(obj)
             User_Shop_process.get_total_ammount(obj)
             obj.price.set(api.temp)
-            messagebox.showinfo("Success", "Item updated")
+            messagebox.showinfo("Thành công", "Item updated")
         else:
             # add check to treeview
-            obj.tree.insert("", "end", values = (
-                check['Product_id'], check['Product_name'], check['Quantity'], check['Price']))
-            obj.product_id.set(check["Product_id"])
-            obj.product_name.set(check["Product_name"])
+            obj.tree.insert("", "end", values=(check['Film_id'], check['Film'], check['Quantity'], check['Price']))
+            obj.product_id.set(check["Film_id"])
+            obj.product_name.set(check["Film"])
             obj.quantity.set(check["Quantity"])
             obj.price.set(check["Price"])
-            messagebox.showinfo("Success", "Product added to cart")
+            messagebox.showinfo("Success", "Đã thêm vé vào giỏ hàng")
             User_Shop_process.get_total_ammount(obj)
 
     @staticmethod
@@ -47,7 +45,7 @@ class User_Shop_process:
         try:
             # get choosen data of obj.tree
             data = obj.tree.item(obj.tree.selection())['values']
-            # remove data from cart
+            # xóa dữ liệu vé khỏi giỏ hàng
             api = Api.User_Api()
             api.remove_item_from_cart(data[1])
             # remove data from treeview
@@ -60,9 +58,9 @@ class User_Shop_process:
             obj.price.set("")
             obj.search_entry.delete(0, END)
             obj.quantity_entry.delete(0, END)
-            messagebox.showinfo("Success", "Product removed from cart")
+            messagebox.showinfo("Success", "Đã xóa vé khỏi giỏ hàng")
         except:
-            messagebox.showinfo("Error", "No product selected")
+            messagebox.showinfo("Error", "Không có vé nào được chọn")
 
     @staticmethod
     def get_total_ammount(obj):
@@ -111,4 +109,4 @@ class User_Shop_process:
             obj.tree.delete(item)
         data = api.total_cart
         for item in data:
-            obj.tree.insert("", END, values = (item["Product_id"], item["Product_name"], item["Quantity"], item["Price"]))
+            obj.tree.insert("", END, values=(item["Film_id"], item["Film"], item["Quantity"], item["Price"]))
