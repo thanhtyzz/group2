@@ -1,6 +1,6 @@
 from tkinter import *
-import Modules.User.Component.Items.User_Items_create as uic
-import Modules.User.Component.Shop.User_Shop_create as usc
+import Modules.User.Component.Films.User_Films_create as uic
+import Modules.User.Component.Buytickets.User_Buytickets_create as usc
 from tkinter import messagebox
 import Modules.Login.Login_View as lgv
 
