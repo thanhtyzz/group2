@@ -92,7 +92,7 @@ class Admin_Users_create:
         self.delete_button.place(x=152.0, y=343.0, width=47.0, height=25.0)
 
         self.create_button = Button(image=self.create_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: aup.Admin_User_create.create_user(self))
+                               command=lambda: aup.Admin_User_create.create_user(obj))
         self.create_button.place(x=213.0, y=343.0, width=80.0, height=25.0)
 
 
