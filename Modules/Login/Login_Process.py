@@ -45,3 +45,4 @@ class Login_Process:
         obj.window.destroy()
         app = suv.Sign_up_View()
         app.window.mainloop()
+        hello
