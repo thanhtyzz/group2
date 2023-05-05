@@ -1,11 +1,11 @@
 from tkinter import *
-import Modules.User.Component.Items.User_Items_process as uip
+import Modules.User.Component.Films.User_Films_process as uip
 
 
-class User_Items_create:
+class User_Films_create:
 
     @staticmethod
-    def generate_items(obj):
+    def generate_films(obj):
         # clear all frames
         for frame in obj.allframes:
             frame.place_forget()
@@ -15,4 +15,4 @@ class User_Items_create:
         obj.tableframe.place(x = 50, y = 250, width = 980, height = 400)
         obj.allframes.append(obj.tableframe)
         # create table
-        uip.User_Items_process.generate_items_table(obj)
+        uip.User_Films_process.generate_films_table(obj)
