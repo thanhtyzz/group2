@@ -77,3 +77,44 @@ class Admin_Inventory_Process:
         obj.price_entry.delete(0, END)
         obj.current_stock_entry.delete(0, END)
         obj.add_stock_entry.delete(0, END)
+
+    @staticmethod
+    def reset(obj):
+        obj.film_name_entry.delete(0, END)
+        obj.genre_entry.delete(0, END)
+        obj.showtime_entry.delete(0, END)
+        obj.price_entry.delete(0, END)
+        obj.current_stock_entry.delete(0, END)
+        obj.add_stock_entry.delete(0, END)
+
+    @staticmethod 
+    def search_button_handle(obj): 
+        api = AdminApi.Admin_Api() 
+        search_term = obj.search_entry.get()
+        if search_term == '': 
+            mbox.showerror('Error','Invalid User Input') 
+        else: 
+            for item in obj.tree.get_children(): 
+                obj.tree.delete(item) 
+            data  = api.warehouse_collection.find({'Film': {'$regex': f'{search_term}', '$options': 'i'}})
+            for row in data: 
+                obj.tree.insert('', 'end', values = (row['Film_id'], row['Film'], row['Genre'], row['Showtime'], row['Price'], row['Stock']))
+
+    @staticmethod 
+    def reset_button_handle(obj): 
+        api = AdminApi.Admin_Api()
+        for item in obj.tree.get_children(): 
+            obj.tree.delete(item) 
+        table_data = api.get_all_warehouse_data()
+        for row in table_data: 
+            obj.tree.insert('', 'end', values = (row['Film_id'], row['Film'], row['Genre'], row['Showtime'], row['Price'], row['Stock']))
+        obj.current_stock_entry.config(state = NORMAL)
+        obj.search_entry.delete(0, END)
+        obj.film_entry.delete(0, END) 
+        obj.genre_entry.delete(0, END) 
+        obj.showtime_entry.delete(0, END)
+        obj.price_entry.delete(0, END)
+        obj.current_stock_entry.delete(0, END)
+        obj.add_stock_entry.delete(0, END)
+        obj.current_stock_entry.config(state = DISABLED)
+        
