@@ -1,59 +1,65 @@
-import Modules.Signup.Sign_up_Process as signup_process
 from tkinter import *
+import tkinter as tk
+from pathlib import Path
+import Modules.Signup.Signup_Process as signup_process
 
 
-class Sign_up_View:
+class LoginView:
     def __init__(self):
         self.window = Tk()
-
         # get screen width and height
         self.screen_width = self.window.winfo_screenwidth()
         self.screen_height = self.window.winfo_screenheight()
 
         # set window width and height
-        self.window_width = 1080
-        self.window_height = 720
-
+        self.window_width = 685
+        self.window_height = 492
         # set window position
         self.window.geometry("%dx%d+%d+%d" % (self.window_width, self.window_height,
-                                              (self.screen_width - self.window_width) / 2,
-                                              (self.screen_height - self.window_height) / 2))
+                             (self.screen_width - self.window_width) / 2, (self.screen_height - self.window_height) / 2))
+        self.window.configure(bg="#FFFFFF")
+        self.window.title("Signup")
 
-        self.window.title("Sign Up")
-        self.window.configure(bg="#f6efff")
-        self.window.iconphoto(False, PhotoImage(file=f"./Images/Login/home.png"))
-
-        self.canvas = Canvas(self.window, bg="#f6efff", height=768, width=1366, bd=0, highlightthickness=0,
-                             relief="ridge")
+        self.canvas = Canvas(self.window, bg="#FFFFFF", height=492, width=685, bd=0, highlightthickness=0, relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        self.background_img = PhotoImage(file=f"./Images/SignUp/BG.png")
-        self.background = self.canvas.create_image(540, 360, image=self.background_img)
+        assets_path = Path(r"D:\Study\HK2\KY THUAT LAP TRINH\Do_an-cuoi_ki_Nhom2\File\Images\Signup")
 
-        self.username_entry = Entry(self.window, bd=0, bg="#9E94FF", highlightthickness=0)
-        self.username_entry.place(x=335, y=230, height=33, width=390)
+        self.background_img = PhotoImage(file=assets_path / "Background.png")
+        self.login_image = PhotoImage(file=assets_path / "Button_Login.png")
+        self.signup_image_1 = PhotoImage(file=assets_path / "Button_Signup_1.png")
+        self.entry_image = PhotoImage(file=assets_path / "Textbox.png")
+        self.trendingnow_image = PhotoImage(file=assets_path / "Button_Trendingnow.png")
+        self.signup_image_2 = PhotoImage(file=assets_path / "Button_Signup_2.png")
 
-        self.password_entry = Entry(self.window, show="*", bd=0, bg="#9E94FF", highlightthickness=0)
-        self.password_entry.place(x=335, y=330, height=33, width=390)
+        self.background = self.canvas.create_image(342.0, 246.0, image=self.background_img)
 
-        self.reenterpass_entry = Entry(self.window, show="*", bd=0, bg="#9E94FF", highlightthickness=0)
-        self.reenterpass_entry.place(x=335, y=430, height=33, width=390)
+        self.login_button = Button(image=self.login_image, borderwidth=0, highlightthickness=0,
+                               command=lambda: signup_process.Sign_up_Process.login_button_handle(self))
+        self.login_button.place(x=532.0, y=12.0, width=69.0, height=33.0)
 
-        self.signup_image = PhotoImage(file=f"./Images/SignUp/Button_Signup.png")
-        self.signup_button = Button(self.window, image=self.signup_image, borderwidth=0, highlightthickness=0,
-                                    relief="flat", bg="#A8AAFC", activebackground="#A8AAFC",
-                                    command=lambda: signup_process.Sign_up_Process.signup_button_handle(self))
-        self.signup_button.place(x=460, y=530, width=135, height=45)
+        self.signup_button_1 = Button(image=self.signup_image_1, borderwidth=0, highlightthickness=0,
+                               command=lambda: print("signup_button_1 clicked"), relief="flat")
+        self.signup_button_1.place(x=607.0, y=12.0, width=70.0, height=33.0)
 
-        self.signin_image = PhotoImage(file=f"./Images/SignUp/Button_Back.png")
-        self.signin_button = Button(self.window, image=self.signin_image, borderwidth=0, highlightthickness=0,
-                                    relief="flat", bg="#A4A6FD", activebackground="#A4A6FD",
-                                    command=lambda: signup_process.Sign_up_Process.login_button_handle(self))
-        self.signin_button.place(x=460, y=585, width=135, height=45)
+        self.entry_bg_1 = self.canvas.create_image(354.0, 230.0, image=self.entry_image_1)
+        self.entry_1 = Entry(bd=0, bg="#F8EBD1", fg="#000716", highlightthickness=0)
+        self.entry_1.place(x=268.0, y=214.0, width=172.0, height=30.0)
 
-        self.entry_image = PhotoImage(file=f"./Images/SignUp/Textbox.png")
-        self.entry_bg1 = self.canvas.create_image(535, 450, image=self.entry_image)
-        self.entry_bg2 = self.canvas.create_image(535, 350, image=self.entry_image)
-        self.entry_bg3 = self.canvas.create_image(535, 250, image=self.entry_image)
+        self.entry_bg_2 = self.canvas.create_image(354.0, 293.0, image=self.entry_image_2)
+        self.entry_2 = Entry(bd=0, bg="#F8EBD1", fg="#000716", highlightthickness=0)
+        self.entry_2.place(x=268.0, y=277.0, width=172.0, height=30.0)
 
+        self.entry_bg_3 = self.canvas.create_image(354.0, 355.0, image=self.entry_image_3)
+        self.entry_3 = Entry(bd=0, bg="#F8EBD1", fg="#000716", highlightthickness=0)
+        self.entry_3.place(x=268.0, y=339.0, width=172.0, height=30.0)
+
+        self.trendingnow_button = Button(image=self.trendingnow_image, borderwidth=0, highlightthickness=0,
+                               command=lambda: print("trendingnow_button clicked"), relief="flat")
+        self.trendingnow_button.place(x=465.0, y=427.0, width=203.0, height=55.0)
+        # Nút trending now hiện những bộ phim đang trend
+
+        self.signup_button_2 = Button(image=self.login_image_2, borderwidth=0, highlightthickness=0,
+                               command=lambda: signup_process.Sign_up_Process.signup_button_handle(self))
+        self.signup_button_2.place(x=315.0, y=391.0, width=78.0, height=31.0)
         self.window.resizable(0, 0)
