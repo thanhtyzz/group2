@@ -25,7 +25,7 @@ class Admin_Users_create:
         self.canvas = Canvas(self.window, bg="#FFFFFF", height=492, width=685, bd=0, highlightthickness=0, relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        assets_path = Path(r"D:\Study\HK2\KY THUAT LAP TRINH\Do-an-cuoi-ki-nhom-2\File\Images\Admin\Users")
+        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Component\Users")
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
         self.films_image = PhotoImage(file=assets_path / "Button_Films.png")
@@ -41,9 +41,9 @@ class Admin_Users_create:
 
         self.background = self.background_img.create_image(342.0, 246.0, image=self.background_img)
 
-        self.movies_button = Button(image=self.movies_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: aup.Admin_User_Process.movies_button_handle(self))
-        self.movies_button.place(x=10.0, y=124.0, width=97.0, height=37.0)
+        self.films_button = Button(image=self.films_image, borderwidth=0, highlightthickness=0,
+                               command=lambda: aup.Admin_User_Process.films_button_handle(self))
+        self.films_button.place(x=10.0, y=124.0, width=97.0, height=37.0)
 
         self.inventory_button = Button(image=self.inventory_image, borderwidth=0, highlightthickness=0,
                                command=lambda: aup.Admin_User_Process.inventory_button_handle(self))
