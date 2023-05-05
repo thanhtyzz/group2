@@ -24,7 +24,7 @@ class User_Landing_View:
                              relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        assets_path = Path(r"r"D:\do-an-cuoi-ki-nhom2\Images\User\LandingPage")
+        assets_path = Path(r"r"D:\do-an-cuoi-ki-nhom-2\Images\User\LandingPage")
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
         self.logout_image = PhotoImage(file=assets_path / "Button_Logout.png")
