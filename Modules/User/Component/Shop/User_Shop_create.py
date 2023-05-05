@@ -1,39 +1,87 @@
 from tkinter import *
-import Modules.User.Component.Shop.User_Shop_process as usp
-import Api.User_Api as Api
+from pathlib import Path
+import Modules.User.Component.Buytickets.User_Buytickets_process as usp
 from tkinter import ttk
-import Service.Widget_service as ws
 
 
-class User_Shop_create:
+class User_Buytickets_create:
+    def __init__(self):
+        self.window = Tk()
+        # get screen width and height
+        self.screen_width = self.window.winfo_screenwidth()
+        self.screen_height = self.window.winfo_screenheight()
+
+        # set window width and height
+        self.window_width = 685
+        self.window_height = 492
+        # set window position
+        self.window.geometry("%dx%d+%d+%d" % (self.window_width, self.window_height,
+                             (self.screen_width - self.window_width) / 2, (self.screen_height - self.window_height) / 2))
+        self.window.configure(bg="#FFFFFF")
+        self.window.title("Buytickets")
+
+        self.canvas = Canvas(self.window, bg="#FFFFFF", height=492, width=685, bd=0, highlightthickness=0, relief="ridge")
+        self.canvas.place(x=0, y=0)
+
+        assets_path = Path(r"D:\Study\HK2\KY THUAT LAP TRINH\Do_an-cuoi_ki_Nhom2\File\Images\Login")
+
+        self.background_img = PhotoImage(file=assets_path / "Background.png")
+        self.entry_image_1 = PhotoImage(file=assets_path / "Textbox_1.png")
+        self.entry_image_2 = PhotoImage(file=assets_path / "Textbox_2.png")
+        self.process_image = PhotoImage(file=assets_path / "Button_Process.png")
+        self.addtocart_image = PhotoImage(file=assets_path / "Button_Addtocart.png")
+        self.remove_image = PhotoImage(file=assets_path / "Button_Remove.png")
+
+        self.background = self.canvas.create_image(342.0, 246.0, image=self.background_img)
+
+        self.process_button = Button(image=self.process_image, borderwidth=0, highlightthickness=0,
+                               command=lambda: usp.User_Buytickets_process.process_cart_handle(obj))
+        self.process_button.place(x=358.0, y=343.0, width=70.0, height=88.0)
+
+        self.addtocart_button = Button(image=self.addtocart_image, borderwidth=0, highlightthickness=0,
+                               command=lambda: usp.User_Buytickets_process.add_to_cart(obj))
+        self.addtocart_button.place(x=446.0, y=406.0, width=95.0, height=25.0)
+
+        self.remove_button = Button(image=self.remove_image, borderwidth=0, highlightthickness=0,
+                               command=lambda: usp.User_Buytickets_process.remove_from_cart(obj))
+        self.remove_button.place(x=559.0, y=406.0, width=95.0, height=25.0)
+
+        self.entry_bg_1 = self.canvas.create_image(231.0, 459.0, image=self.entry_image_1)
+        self.entry_1 = Entry(bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        self.entry_1.place(x=146.0, y=448.0, width=170.0, height=20.0)
+
+        self.entry_bg_2 = self.canvas.create_image(231.0, 425.0, image=self.entry_image_1)
+        self.entry_2 = Entry(bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        self.entry_2.place(x=146.0, y=414.0, width=170.0, height=20.0)
+
+        self.entry_bg_3 = self.canvas.create_image(231.0, 389.0, image=self.entry_image_1)
+        self.entry_1 = Entry(bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        self.entry_1.place(x=146.0, y=378.0, width=170.0, height=20.0)
+
+        self.entry_bg_4 = self.canvas.create_image(231.0, 354.0, image=self.entry_image_1)
+        self.entry_2 = Entry(bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        self.entry_2.place(x=146.0, y=343.0, width=170.0, height=20.0)
+
+        self.entry_bg_5 = self.canvas.create_image(541.0, 455.0, image=self.entry_image_1)
+        self.entry_1 = Entry(bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        self.entry_1.place(x=461.0, y=444.0, width=160.0, height=20.0)
+
+        self.entry_bg_6 = self.canvas.create_image(590.5, 383.0, image=self.entry_image_2)
+        self.entry_2 = Entry(bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        self.entry_2.place(x=519.0, y=372.0, width=143.0, height=20.0)
+
+        self.entry_bg_7 = self.canvas.create_image(590.5, 354.0, image=self.entry_image_2)
+        self.entry_1 = Entry(bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        self.entry_1.place(x=519.0, y=343.0, width=143.0, height=20.0)
+
+        self.canvas.create_rectangle(27.0, 187.0, 664.0, 321.0, fill="#D9D9D9", outline="")
+        self.canvas.create_rectangle(15.0, 33.0, 337.0, 478.0, fill="#4C4A4A", outline="")
+        self.canvas.create_rectangle(348.0, 33.0, 670.0, 478.0, fill="#4C4A4A", outline="")
+
+        self.window.resizable(0, 0)
 
     @staticmethod
-    def generate_shop(obj):
-        # clear all frames
-        for frame in obj.allframes:
-            frame.place_forget()
-        obj.allframes = []
-
-        # create new frames
-        obj.tableframe = Frame(obj.window, bg="#fccde0")
-        obj.tableframe.place(x=50, y=250, width=980, height=200)
-
-        obj.formframe = Frame(obj.window, bg="#fccde0")
-        obj.formframe.place(x=50, y=480, width=480, height=200)
-
-        obj.buttonframe = Frame(obj.window, bg="#fccde0")
-        obj.buttonframe.place(x=550, y=480, width=480, height=200)
-
-        obj.allframes.append(obj.tableframe)
-        obj.allframes.append(obj.formframe)
-        obj.allframes.append(obj.buttonframe)
-
-        User_Shop_create.generate_shop_table(obj)
-        User_Shop_create.generate_shop_form(obj)
-        User_Shop_create.generate_shop_buttons(obj)
-
-    @staticmethod
-    def generate_shop_table(obj):
+    def generate_buytickets_table(obj):
         def clickprodtable(event):
             # get selected product
             cur = obj.tree.selection()
@@ -48,121 +96,29 @@ class User_Shop_create:
                 pass
 
         # create tree view
-        obj.tree = ttk.Treeview(obj.tableframe, columns=(
-            "Product_id", "Product_name", "Quantity", "Price"), height=20)
+        obj.tree = ttk.Treeview(obj.tableframe, columns = (
+            "Product_id", "Product_name", "Quantity", "Price"), height = 20)
         obj.tree.heading("#0")
-        obj.tree.heading("#1", text="Product_id")
-        obj.tree.heading("#2", text="Product_name")
-        obj.tree.heading("#3", text="Quantity")
-        obj.tree.heading("#4", text="Price")
-        obj.tree.column("#0", width=0)
-        obj.tree.column("#1", width=240, stretch=NO)
-        obj.tree.column("#2", width=240, stretch=NO)
-        obj.tree.column("#3", width=240, stretch=NO)
-        obj.tree.column("#4", width=240, stretch=NO)
+        obj.tree.heading("#1", text = "Product_id")
+        obj.tree.heading("#2", text = "Product_name")
+        obj.tree.heading("#3", text = "Quantity")
+        obj.tree.heading("#4", text = "Price")
+        obj.tree.column("#0", width = 0)
+        obj.tree.column("#1", width = 240, stretch = NO)
+        obj.tree.column("#2", width = 240, stretch = NO)
+        obj.tree.column("#3", width = 240, stretch = NO)
+        obj.tree.column("#4", width = 240, stretch = NO)
         obj.tree.bind("<<TreeviewSelect>>", clickprodtable)
-        obj.tree.grid(row=1, column=0, columnspan=7, sticky=(N, S, W, E))
+        obj.tree.grid(row = 1, column = 0, columnspan = 7, sticky = (N, S, W, E))
         # create scrollbar
         obj.scrollbary = Scrollbar(
-            obj.tableframe, orient=VERTICAL, command=obj.tree.yview)
-        obj.scrollbary.grid(row=1, column=7, sticky=(N, S, W, E))
+            obj.tableframe, orient = VERTICAL, command = obj.tree.yview)
+        obj.scrollbary.grid(row = 1, column = 7, sticky = (N, S, W, E))
         obj.scrollbarx = Scrollbar(
-            obj.tableframe, orient=HORIZONTAL, command=obj.tree.xview)
-        obj.scrollbarx.grid(row=2, column=0, columnspan=7, sticky=(N, S, W, E))
-        obj.tree.configure(yscrollcommand=obj.scrollbary.set,
-                           xscrollcommand=obj.scrollbarx.set)
-        usp.User_Shop_process.refresh_treeview(obj)
-        obj.window.resizable(0, 0)
-
-    @staticmethod
-    def generate_shop_form(obj):
-
-        # create form in form frame
-        obj.product_id = StringVar()
-        obj.product_name = StringVar()
-        obj.quantity = StringVar()
-        obj.price = StringVar()
-        obj.total = StringVar()
-
-        obj.product_id_label = Label(
-            obj.formframe, text="Product_id:", font=("Montserrat", 12, "bold"), bg="#fccde0")
-        obj.product_id_label.place(x=0, y=10, width=150, height=30)
-        obj.product_id_entry = Entry(obj.formframe, textvariable=obj.product_id, font=(
-            "Montserrat", 12), state=DISABLED, width=20)
-        obj.product_id_entry.place(x=160, y=10, width=300, height=30)
-
-        obj.product_name_label = Label(
-            obj.formframe, text="Product_name:", font=("Montserrat", 12, "bold"), bg="#fccde0")
-        obj.product_name_label.place(x=13, y=50, width=150, height=30)
-
-        obj.product_name_entry = Entry(obj.formframe, textvariable=obj.product_name, font=(
-            "Montserrat", 12), state=DISABLED, width=150)
-        obj.product_name_entry.place(x=160, y=50, width=300, height=30)
-
-        obj.quantity_label = Label(obj.formframe, text="Quantity:", font=(
-            "Montserrat", 12, "bold"), bg="#fccde0")
-        obj.quantity_label.place(x=-12, y=90, width=150, height=30)
-        obj.quantity_entry = Entry(obj.formframe, textvariable=obj.quantity, font=(
-            "Montserrat", 12), state=DISABLED, width=150)
-        obj.quantity_entry.place(x=160, y=90, width=300, height=30)
-
-        obj.price_label = Label(obj.formframe, text="Price:", font=(
-            "Montserrat", 12, "bold"), bg="#fccde0")
-        obj.price_label.place(x=-24, y=130, width=150, height=30)
-        obj.price_entry = Entry(obj.formframe, textvariable=obj.price, font=(
-            "Montserrat", 12), state=DISABLED, width=150)
-        obj.price_entry.place(x=160, y=130, width=300, height=30)
-
-    @staticmethod
-    def generate_shop_buttons(obj):
-        api = Api.User_Api()
-        # process button
-        obj.process_button = Button(obj.buttonframe, text="Process", font=(
-            "Montserrat", 12, "bold"), bg="#ccccfe", command=lambda: usp.User_Shop_process.process_cart_handle(obj))
-        obj.process_button.place(x=10, y=10, width=100, height=120)
-
-        obj.search_label = Label(obj.buttonframe, text="Search:", font=(
-            "Montserrat", 12, "bold"), bg="#fccde0")
-        obj.search_label.place(x=120, y=10, width=100, height=30)
-
-        obj.quantity_label = Label(obj.buttonframe, text="Quantity:", font=(
-            "Montserrat", 12, "bold"), bg="#fccde0")
-        obj.quantity_label.place(x=126, y=50, width=100, height=30)
-
-        # create search entry
-        list = api.get_all_product_name()
-        obj.searchvar = StringVar()
-        obj.search_entry = ws.myentry(
-            obj.buttonframe, textvariable=obj.searchvar, width=20)
-        obj.search_entry.set_completion_list(list)
-        # obj.search_entry = Entry(obj.buttonframe, font = ("Montserrat", 12), width=20)
-        obj.search_entry.place(x=240, y=10, width=200, height=30)
-
-        # create quantity entry
-        obj.quantity_entry_bframe = Entry(
-            obj.buttonframe, font=("Montserrat", 12), width=20)
-        obj.quantity_entry_bframe.place(x=240, y=50, width=200, height=30)
-
-        # create add to cart button
-        obj.add_button = Button(obj.buttonframe, text="Add to cart", font=(
-            "Montserrat", 12, "bold"), bg="#ccccfe", command=lambda: usp.User_Shop_process.add_to_cart(obj))
-        obj.add_button.place(x=130, y=100, width=160, height=30)
-
-        # create remove from cart button
-        obj.remove_button = Button(obj.buttonframe, text="Remove", font=(
-            "Montserrat", 12, "bold"), bg="#ccccfe", command=lambda: usp.User_Shop_process.remove_from_cart(obj))
-        obj.remove_button.place(x=300, y=100, width=160, height=30)
-
-        # create total amount label
-        obj.total_label = Label(obj.buttonframe, text="Total:", font=(
-            "Montserrat", 20, "bold"), bg="#fccde0")
-        obj.total_label.place(x=10, y=150, width=100, height=30)
-
-        # create total amount entry
-        obj.total_entry = Entry(obj.buttonframe, textvariable=obj.total, font=(
-            "Montserrat", 20), state=DISABLED, width=20)
-        obj.total_entry.place(x=120, y=150, width=200, height=30)
-        try:
-            usp.User_Shop_process.get_total_ammount(obj)
-        except:
-            pass
+            obj.tableframe, orient = HORIZONTAL, command = obj.tree.xview)
+        obj.scrollbarx.grid(row = 2, column = 0, columnspan = 7, sticky = (N, S, W, E))
+        obj.tree.configure(yscrollcommand = obj.scrollbary.set,
+                           xscrollcommand = obj.scrollbarx.set)
+        usp.User_Buytickets_process.refresh_treeview(obj)
+        obj.window.resizable(0,0)
+        
