@@ -1,0 +1,53 @@
+[
+    {
+        "Invoice_ID": "ID001",
+        "Invoice_Date": "2023-03-23",
+        "Cart": [
+            {
+                "Film_ID": "T003",
+                "Film": "Vertigo",
+                "Quantity": 2,
+                "Price": 75.00
+            },
+            {
+                "Film_ID": "T004",
+                "Film": "2001: A Space Odyssey",
+                "Quantity": 1,
+                "Price": 75.00
+            }
+        ],
+        "Total": 225.00
+    },
+    {
+        "Invoice_ID": "ID002",
+        "Invoice_Date": "2023-03-24",
+        "Cart": [
+            {
+                "Film_ID": "T001",
+                "Film": "Citizen Kane",
+                "Quantity": 3,
+                "Price": 75.00
+            }
+        ],
+        "Total": 225.00
+    },
+    {
+        "Invoice_ID": "ID003",
+        "Invoice_Date": "2023-03-25",
+        "Cart": [
+            {
+                "Film_ID": "T002",
+                "Film": "Citizen Kane",
+                "Quantity": 1,
+                "Price": 75.00
+            },
+            {
+                "Film_ID": "T009",
+                "Film": "Goodfellas",
+                "Quantity": 4,
+                "Price": 75.00
+            }
+        ],
+        "Total": 375.00
+    }
+]

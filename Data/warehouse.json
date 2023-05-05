@@ -1,0 +1,82 @@
+[
+    {
+        "Film_ID": "T001",
+        "Film": "Citizen Kane",
+        "Genre": "Mystery",
+        "Showtime": "2023-03-30",
+        "Price": 75,
+        "Stock": 500
+    },
+    {
+        "Film_ID": "T002",
+        "Film": "The Godfather",
+        "Genre": "Crime",
+        "Showtime": "2023-03-31",
+        "Price": 75,
+        "Stock": 500
+    },
+    {
+        "Film_ID": "T003",
+        "Film": "Vertigo",
+        "Genre": "Thriller",
+        "Showtime": "2023-04-01",
+        "Price": 75,
+        "Stock": 500
+    },
+    {
+        "Film_ID": "T004",
+        "Film": "2001: A Space Odyssey",
+        "Genre": "Science Fiction",
+        "Showtime": "2023-04-02",
+        "Price": 75,
+        "Stock": 500
+    },
+    {
+        "Film_ID": "T005",
+        "Film": "The Searchers",
+        "Genre": "Western",
+        "Showtime": "2023-04-03",
+        "Price": 75,
+        "Stock": 500
+    },
+    {
+        "Film_ID": "T006",
+        "Film": "Sunrise",
+        "Genre": "Drama",
+        "Showtime": "2023-04-04",
+        "Price": 75,
+        "Stock": 500
+    },
+    {
+        "Film_ID": "T007",
+        "Film": "Singin' in the Rain",
+        "Genre": "Comedy",
+        "Showtime": "2023-04-05",
+        "Price": 75,
+        "Stock": 500
+    },
+    {
+        "Film_ID": "T008",
+        "Film": "Mulholland",
+        "Genre": "Mystery",
+        "Showtime": "2023-04-06",
+        "Price": 75,
+        "Stock": 500
+    },
+    {
+        "Film_ID": "T009",
+        "Film": "Goodfellas",
+        "Genre": "Crime",
+        "Showtime": "2023-04-07",
+        "Price": 75,
+        "Stock": 500
+    },
+    {
+        "Film_ID": "T010",
+        "Film": "Taxi Driver",
+        "Genre": "Drama",
+        "Showtime": "2023-04-08",
+        "Price": 75,
+        "Stock": 500
+    }
+]
