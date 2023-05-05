@@ -17,8 +17,8 @@ class Admin_Sales_Process:
             obj.tree.delete(i)
         data = api.get_all_invoices_data()
         for row in data:
-            if search in row["Invoice_Id"]:
-                obj.tree.insert("", "end", values = (row["Invoice_Id"], row["InvoiceDate"], row["Product_id"], row["Product_name"], row["Quantity"], row["Price"]))
+            if search in row["Invoice_ID"]:
+                obj.tree.insert("", "end", values = (row["Invoice_ID"], row["Invoice_Date"], row["Film_ID"], row["Film"], row["Quantity"], row["Price"]))
 
     @staticmethod
     def visualize_button_handle(obj):
@@ -27,8 +27,8 @@ class Admin_Sales_Process:
         date = []
         total_price = []
         for row in invoices:
-            date.append(row["InvoiceDate"].date())
-            total_price.append(row["TotalAmount"])
+            date.append(row["Invoice_Date"].date())
+            total_price.append(row["Total"])
 
         if len(date) > 30:
             date = date[-30:]
