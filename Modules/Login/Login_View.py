@@ -63,3 +63,10 @@ class LoginView:
                                command=lambda: lgp.Login_Process.confirm_button_handle(self))
         self.login_button_2.place(x=258.0, y=361.0, width=69.0, height=33.0)
         self.window.resizable(0, 0)
+        
+        self.name_entry = Entry(self.window, bd = 0, bg="#C9C3FB", highlightthickness = 0)
+        self.name_entry.place(x = 110, y = 297, width = 300, height = 28)
+
+        self.password_entry = Entry(self.window, show = "*", bd = 0, bg = "#C9C3FB", highlightthickness = 0)
+        self.password_entry.place(x = 110, y = 405, width = 300, height = 28)
+        self.window.resizable(0, 0)
