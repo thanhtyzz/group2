@@ -46,3 +46,4 @@ class Login_Process:
         app = suv.Sign_up_View()
         app.window.mainloop()
         hello
+        âsdasd
