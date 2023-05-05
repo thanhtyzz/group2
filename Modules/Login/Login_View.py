@@ -23,7 +23,7 @@ class LoginView:
         self.canvas = Canvas(self.window, bg="#FFFFFF", height=492, width=685, bd=0, highlightthickness=0, relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        assets_path = Path(r"D:\Study\HK2\KY THUAT LAP TRINH\Do_an-cuoi_ki_Nhom2\File\Images\Login")
+        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Login")
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
         self.login_image_1 = PhotoImage(file=assets_path / "Button_Login_1.png")
@@ -57,7 +57,7 @@ class LoginView:
         self.trendingnow_button = Button(image=self.trendingnow_image, borderwidth=0, highlightthickness=0,
                                command=lambda: print("button_3 clicked"), relief="flat")
         self.trendingnow_button.place(x=465.0, y=427.0, width=203.0, height=54.0)
-        # Nút trending now hiện những bộ phim đang trend
+        # "The 'trending now' button displays movies that are currently trending."
 
         self.login_button_2 = Button(image=self.login_image_2, borderwidth=0, highlightthickness=0,
                                command=lambda: lgp.Login_Process.confirm_button_handle(self))
