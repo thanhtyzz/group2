@@ -1,0 +1,41 @@
+[
+    {
+        "Invoice_Id": "INV-001",
+        "InvoiceDate": "2019-01-01",
+        "Cart": [
+            {
+                "Product_id": "P001",
+                "Product_name": "COOKIES",
+                "Quantity": 1,
+                "Price": 100.00
+            },
+            {
+                "Product_id": "P002",
+                "Product_name": "CROISSANT",
+                "Quantity": 1,
+                "Price": 200.00
+            }
+        ],
+        "TotalAmount": 300.00
+    },
+    {
+        "Invoice_Id": "INV-002",
+        "InvoiceDate": "2019-01-02",
+        "Cart": [
+            {
+                "Product_id": "P001",
+                "Product_name": "COOKIES",
+                "Quantity": 1,
+                "Price": 100.00
+            },
+            {
+                "Product_id": "P002",
+                "Product_name": "CROISSANT",
+                "Quantity": 1,
+                "Price": 200.00
+            }
+        ],
+        "TotalAmount": 300.00
+    }
+
+]
