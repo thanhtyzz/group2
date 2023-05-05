@@ -19,3 +19,6 @@ class Signup_Api(main_api.Api):
         self.users_collection.insert_one(
             {'username': username, 'password': password, 'roles': "User"})
         return 0  # success
+
+    def check_password_standard(obj, password, username):
+        pass
