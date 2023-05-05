@@ -5,7 +5,7 @@ from tkinter import ttk
 class User_Items_Process:
 
     @staticmethod
-    def generate_items_table(obj):
+    def generate_films_table(obj):
         api = Api.User_Api()
         data = api.get_all_warehouse_data()
         #create a tree view in table frame
