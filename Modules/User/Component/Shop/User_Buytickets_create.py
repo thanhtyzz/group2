@@ -23,7 +23,7 @@ class User_Buytickets_create:
         self.canvas = Canvas(self.window, bg="#FFFFFF", height=492, width=685, bd=0, highlightthickness=0, relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        assets_path = Path(r"D:\Study\HK2\KY THUAT LAP TRINH\Do_an-cuoi_ki_Nhom2\File\Images\Login")
+        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\User\BuyTickets")
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
         self.entry_image_1 = PhotoImage(file=assets_path / "Textbox_1.png")
@@ -83,13 +83,13 @@ class User_Buytickets_create:
     @staticmethod
     def generate_buytickets_table(obj):
         def clickprodtable(event):
-            # get selected product
+            # get selected film
             cur = obj.tree.selection()
             cur = obj.tree.item(cur)
             try:
-                obj.selected_product = cur['values']
-                obj.product_id.set(cur['values'][0])
-                obj.product_name.set(cur['values'][1])
+                obj.selected_film = cur['values']
+                obj.film_id.set(cur['values'][0])
+                obj.film.set(cur['values'][1])
                 obj.quantity.set(cur['values'][2])
                 obj.price.set(cur['values'][3])
             except:
@@ -97,10 +97,10 @@ class User_Buytickets_create:
 
         # create tree view
         obj.tree = ttk.Treeview(obj.tableframe, columns = (
-            "Product_id", "Product_name", "Quantity", "Price"), height = 20)
+            "Film_ID", "Film", "Quantity", "Price"), height = 20)
         obj.tree.heading("#0")
-        obj.tree.heading("#1", text = "Product_id")
-        obj.tree.heading("#2", text = "Product_name")
+        obj.tree.heading("#1", text = "Film_ID")
+        obj.tree.heading("#2", text = "Film")
         obj.tree.heading("#3", text = "Quantity")
         obj.tree.heading("#4", text = "Price")
         obj.tree.column("#0", width = 0)
