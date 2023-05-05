@@ -4,7 +4,7 @@ from pathlib import Path
 import Modules.Signup.Signup_Process as signup_process
 
 
-class LoginView:
+class Signup_View:
     def __init__(self):
         self.window = Tk()
         # get screen width and height
