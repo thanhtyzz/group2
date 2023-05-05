@@ -23,10 +23,10 @@ class Admin_Sales_create:
         self.canvas = Canvas(self.window, bg="#FFFFFF", height=492, width=685, bd=0, highlightthickness=0, relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        assets_path = Path(r"D:\Study\HK2\KY THUAT LAP TRINH\Do_an-cuoi_ki_Nhom2\File\Images\Admin\Sales")
+        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Component\Sales")
 
         self.background_img = PhotoImage(file=assets_path / "Background.png")
-        self.movies_image = PhotoImage(file=assets_path / "Button_Movies.png")
+        self.films_image = PhotoImage(file=assets_path / "Button_Films.png")
         self.inventory_image = PhotoImage(file=assets_path / "Button_Inventory.png")
         self.sales_image = PhotoImage(file=assets_path / "Button_Sales.png")
         self.users_image = PhotoImage(file=assets_path / "Button_Users.png")
@@ -38,9 +38,9 @@ class Admin_Sales_create:
 
         self.background = self.background_img.create_image(342.0, 246.0, image=self.background_img)
 
-        self.movies_button = Button(image=self.movies_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: asp.Admin_Sales_process.movies_button_handle(self))
-        self.movies_button.place(x=10.0, y=124.0, width=97.0, height=37.0)
+        self.films_button = Button(image=self.films_image, borderwidth=0, highlightthickness=0,
+                               command=lambda: asp.Admin_Sales_process.films_button_handle(self))
+        self.films_button.place(x=10.0, y=124.0, width=97.0, height=37.0)
 
         self.inventory_button = Button(image=self.inventory_image, borderwidth=0, highlightthickness=0,
                                command=lambda: asp.Admin_Sales_process.inventory_button_handle(self))
@@ -85,13 +85,13 @@ class Admin_Sales_create:
     def generate_treeview(obj): 
         api = Api.Admin_Api() 
         #create a tree view 
-        obj.tree = ttk.Treeview(obj.tableframe, columns = ("Invoice_Id", "InvoiceDate", "Product_id", "Product_name", "Quantity", "Price"), height=10)
+        obj.tree = ttk.Treeview(obj.tableframe, columns = ("Invoice_Id", "InvoiceDate", "Films_id", "Films", "Quantity", "Price"), height=10)
         obj.tree.place(x = 0, y = 0, width = 1000, height = 400)
         obj.tree.heading("#0") 
         obj.tree.heading("Invoice_Id", text = "Invoice_Id") 
         obj.tree.heading("InvoiceDate", text = "InvoiceDate") 
-        obj.tree.heading("Product_id", text = "Product_id")
-        obj.tree.heading("Product_name", text = "Product_name")
+        obj.tree.heading("Films_id", text = "Films_id")
+        obj.tree.heading("Films", text = "Films")
         obj.tree.heading("Quantity", text = "Quantity")
         obj.tree.heading("Price", text = "Price")
 
@@ -105,4 +105,4 @@ class Admin_Sales_create:
 
         data = api.get_all_invoices_data() 
         for row in data:
-            obj.tree.insert('', 'end', values = (row['Invoice_Id'], row['InvoiceDate'], row['Product_id'], row['Product_name'], row['Quantity'], row['Price'])) 
+            obj.tree.insert('', 'end', values = (row['Invoice_Id'], row['InvoiceDate'], row['Films_id'], row['Films'], row['Quantity'], row['Price'])) 
