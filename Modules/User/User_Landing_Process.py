@@ -36,4 +36,3 @@ class User_Landing_process:
         else:
             return
 
-            hello
