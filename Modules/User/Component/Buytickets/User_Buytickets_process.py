@@ -108,4 +108,4 @@ class User_Buytickets_process:
             obj.tree.delete(item)
         data = api.total_cart
         for item in data:
-            obj.tree.insert("", END, values=(item["Film_id"], item["Film"], item["Quantity"], item["Price"]))
+            obj.tree.insert("", END, values=(item["Film_ID"], item["Film"], item["Quantity"], item["Price"]))
