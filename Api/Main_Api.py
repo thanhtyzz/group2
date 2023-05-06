@@ -10,15 +10,40 @@ class Api:
     # connect to mongodb
     def connector(self):
         load_dotenv(find_dotenv())
-        host = os.getenv("HOSTNAME")
         username = os.getenv("tranvuduyenan714")
         password = os.getenv("qazwsxedc")
+        cluster_name = os.getenv("group2")
         database = os.getenv("Group2")
-        self.client = MongoClient(host, username=username, password=password)
-        self.db = self.client.get_database(database)
+
+        # Tạo chuỗi kết nối
+        connection_string = f"mongodb+srv://{username}:{password}@{cluster_name}.mongodb.net/{database}?retryWrites=true&w=majority"
+
+        # Tạo kết nối đến MongoDB Atlas
+        self.client = MongoClient(connection_string)
+
+        # Chọn cơ sở dữ liệu
+        self.db = self.client[database]
+
+        # Chọn các collection
         self.users_collection = self.db['user']
         self.warehouse_collection = self.db['warehouse']
         self.invoices_collection = self.db['invoices']
+
+
+        # Tạo chuỗi kết nối
+        connection_string = f"mongodb+srv://tranvuduyenan714:qazwsxedc@group2.nfzbc0b.mongodb.net/"
+
+        # Tạo kết nối đến MongoDB Atlas
+        self.client = MongoClient(connection_string)
+
+        # Chọn cơ sở dữ liệu
+        self.db = self.client[database]
+
+        # Chọn các collection
+        self.users_collection = self.db['user']
+        self.warehouse_collection = self.db['warehouse']
+        self.invoices_collection = self.db['invoices']
+
 
     def get_all_warehouse_data(self):
         warehouse = self.warehouse_collection.find()
