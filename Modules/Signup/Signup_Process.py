@@ -20,7 +20,7 @@ class Sign_up_Process:
         reenterpassword = obj.entry_2.get()
         api = Signup_Api.Signup_Api()
         error = api.check_user_signup(username,password,reenterpassword)
-        standard_pass = api.check_user_signup(password, username)
+        standard_pass = api.check_user_signup(password, username, reenterpassword)
 
         if error == -1:
             mbox.showerror('Warning','Invalid User Input')
