@@ -22,7 +22,7 @@ class Api:
         self.client = MongoClient(connection_string)
 
         # Chọn cơ sở dữ liệu
-        self.db = self.client[database]
+        self.db = self.client['Group2']
 
         # Chọn các collection
         self.users_collection = self.db['user']
