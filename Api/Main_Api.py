@@ -16,7 +16,7 @@ class Api:
         database = os.getenv("Group2")
 
         # Tạo chuỗi kết nối
-        connection_string = f"mongodb+srv://{username}:{password}@{cluster_name}.mongodb.net/{database}?retryWrites=true&w=majority"
+        connection_string = f"mongodb+srv://tranvuduyenan714:qazwsxedc@group2.nfzbc0b.mongodb.net/"
 
         # Tạo kết nối đến MongoDB Atlas
         self.client = MongoClient(connection_string)
