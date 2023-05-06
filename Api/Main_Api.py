@@ -15,7 +15,7 @@ class Api:
         password = os.getenv("qazwsxedc")
         database = os.getenv("DATABASE")
         self.client = MongoClient(host, username=username, password=password)
-        self.db = self.client[database]
+        self.db = self.client.get_database(database)
         self.users_collection = self.db['user']
         self.warehouse_collection = self.db['warehouse']
         self.invoices_collection = self.db['invoices']
