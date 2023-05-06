@@ -12,19 +12,19 @@ class Admin_Films_Process:
         # Get all data from films form
         film_id = obj.film_id_entry.get()
         film = obj.film_entry.get()
-        description = obj.description_entry.get()
-        category = obj.category_entry.get()
+        genre = obj.genre_entry.get()
+        showtime = obj.showtime_entry.get()
         price = obj.price_entry.get()
         stock = obj.stock_entry.get()
-        if film_id == "" or film == "" or category == "" or price == "" or stock == "":
+        if film_id == "" or film == "" or genre == "" or showtime == "" or price == "" or stock == "":
             messagebox.showerror("Error", "Invalid Input")
         else:
-            json_data = {"Film_id": f"{film_id}", "Film": f"{film}",
-                         "Description": f"{description}", "Category": f"{category}",
+            json_data = {"Film_ID": f"{film_id}", "Film": f"{film}",
+                         "Genre": f"{genre}", "Showtime": f"{showtime}",
                          "Price": float(f"{price}"), "Stock": int(f"{stock}")}
             check = api.add_new_item(json_data)
             if check == -1:
-                messagebox.showinfo("Error", "Film id is not in collection but all information is in collection")
+                messagebox.showinfo("Error", "Film ID is not in collection but all information is in collection")
             elif check == 0:
                 messagebox.showinfo("Success", "Inserted Succesfully")
             else:
@@ -36,8 +36,8 @@ class Admin_Films_Process:
         new_prod_id = api.get_last_prod_id()
         obj.film_id.set(new_prod_id)
         obj.film_entry.delete(0, END)
-        obj.description_entry.delete(0, END)
-        obj.category_entry.delete(0, END)
+        obj.genre_entry.delete(0, END)
+        obj.showtime_entry.delete(0, END)
         obj.price_entry.delete(0, END)
         obj.stock_entry.delete(0, END)
     
