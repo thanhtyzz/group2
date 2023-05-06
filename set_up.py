@@ -29,37 +29,37 @@ import ctypes
 load_dotenv(find_dotenv())
 host = os.getenv("HOSTNAME")
 client = MongoClient(host)
-#check there was database named G4KTLT in client
-if "G4KTLT" in client.list_database_names():
+#check there was database named group2 in client
+if "group2" in client.list_database_names():
     print("Database already existed")
-    db = client['G4KTLT']
+    db = client['group2']
 else:
     #create database
-    db = client['G4KTLT']
+    db = client['group2']
     print("Database created")
 
-# #check there was collection named users in db
-# def import_user_data():
-#     with open("./Data/users.json", "r") as f:
-#         data = f.read()
+#check there was collection named users in db
+def import_user_data():
+    with open("./Data/users.json", "r") as f:
+        data = f.read()
 
-#     for element in eval(data):
-#         #check element is in collection
-#         if element["username"] not in db["users"].find({}).distinct("username"):
-#             db["users"].insert_one(element)
-#         else:
-#             continue
-#     print("Imported Users' data successfully")
-# if "users" in db.list_collection_names():
-#     print("Collection Users already existed")
-#     #import data from ./Data/users.json
-#     import_user_data()
+    for element in eval(data):
+        #check element is in collection
+        if element["Username"] not in db["users"].find({}).distinct("Username"):
+            db["users"].insert_one(element)
+        else:
+            continue
+    print("Imported Users' data successfully")
+if "users" in db.list_collection_names():
+    print("Collection Users already existed")
+    #import data from ./Data/users.json
+    import_user_data()
 
-# else:
-#     collection = db.create_collection("users")
-#     print("Collection Users created")
-#     #import data from ./Data/users.json to collection
-#     import_user_data()
+else:
+    collection = db.create_collection("users")
+    print("Collection Users created")
+    #import data from ./Data/users.json to collection
+    import_user_data()
 
 #check there was collection named warehouse in db
 def import_warehouse_data():
@@ -110,4 +110,4 @@ else:
     import_invoice_data()
 
 #notification on the screen for user downloaded successfully, donot use tkinter
-ctypes.windll.user32.MessageBoxW(0, "Setup successfully!!!!!\nFrom G4 with love <3", "G4KTLT", 1)
+ctypes.windll.user32.MessageBoxW(0, "Setup successfully!!!!!\nFrom G4 with love <3", "group2", 1)

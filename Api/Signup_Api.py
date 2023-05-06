@@ -13,11 +13,11 @@ class Signup_Api(main_api.Api):
             return -1  # error 1: username or password is empty
         if password != reenterpassword:
             return -2  # error 2: password is not the same
-        user = self.users_collection.find_one({'username': username})
+        user = self.users_collection.find_one({'Username': username})
         if user != None:
             return -3  # error 3: username is already exist
         self.users_collection.insert_one(
-            {'username': username, 'password': password, 'roles': "User"})
+            {'Username': username, 'Password': password, 'Roles': "User"})
         return 0  # success
 
     def check_password_standard(obj, password, username):
