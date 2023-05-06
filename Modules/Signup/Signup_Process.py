@@ -16,7 +16,7 @@ class Sign_up_Process:
     @staticmethod 
     def signup_button_handle(obj): 
         username = obj.entry_3.get()
-        password = obj.password_entry.get()
+        password = obj.entry_1.get()
         reenterpassword = obj.reenterpass_entry.get()
         api = Signup_Api.Signup_Api()
         error = api.check_user_signup(username,password,reenterpassword)
