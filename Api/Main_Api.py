@@ -33,8 +33,8 @@ class Api:
     def get_all_warehouse_data(self):
         warehouse = self.warehouse_collection.find()
         warehouse_data = []
-        for item in warehouse:
-            warehouse_data.append(item)
+        for Film in warehouse:
+            warehouse_data.append(Film)
         return warehouse_data
 
     def get_all_invoices_data(self):
@@ -51,7 +51,6 @@ class Api:
                 sub_invoice_data["Film"] = item["Film"]
                 sub_invoice_data["Quantity"] = item["Quantity"]
                 sub_invoice_data["Price"] = item["Price"]
-                sub_invoice_data["Genre"] = item["Genre"]
                 invoices_data.append(sub_invoice_data)
         return invoices_data
 
