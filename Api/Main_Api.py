@@ -10,10 +10,10 @@ class Api:
     # connect to mongodb
     def connector(self):
         load_dotenv(find_dotenv())
-        host = os.getenv("HOSTNAME")
+        host = os.getenv("171.226.105.157/32")
         username = os.getenv("tranvuduyenan714")
         password = os.getenv("qazwsxedc")
-        database = os.getenv("DATABASE")
+        database = os.getenv("Group2")
         self.client = MongoClient(host, username=username, password=password)
         self.db = self.client.get_database(database)
         self.users_collection = self.db['user']
