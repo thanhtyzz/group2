@@ -38,19 +38,19 @@ class User_Main_View:
 
         self.background = self.canvas.create_image(342.0, 246.0, image=self.background_img)
 
-        self.films_button = Button(image=self.films_image, borderwidth=0, highlightthickness=0,
+        self.films_button = Button(self.window, image=self.films_image, borderwidth=0, highlightthickness=0,
                                command=lambda: self.click_button("films"))
         self.films_button.place(x=61.0, y=128.0, width=107.0, height=38.0)
 
-        self.invoice_button = Button(image=self.invoice_image, borderwidth=0, highlightthickness=0,
+        self.invoice_button = Button(self.window, image=self.invoice_image, borderwidth=0, highlightthickness=0,
                                command=lambda: self.click_button("buytickets"))
         self.invoice_button.place(x=212.0, y=131.0, width=101.0, height=33.0)
 
-        self.signout_button = Button(image=self.signout_image, borderwidth=0, highlightthickness=0,
+        self.signout_button = Button(self.window, image=self.signout_image, borderwidth=0, highlightthickness=0,
                                command = self.change_account)
         self.signout_button.place(x=363.0, y=131.0, width=103.0, height=33.0)
 
-        self.quit_button = Button(image=self.quit_image, borderwidth=0, highlightthickness=0,
+        self.quit_button = Button(self.window, image=self.quit_image, borderwidth=0, highlightthickness=0,
                                command = self.quit_button_click)
         self.quit_button.place(x=514.0, y=131.0, width=106.0, height=34.0)
         self.window.resizable(0, 0)
@@ -74,4 +74,4 @@ class User_Main_View:
         if button == "films": 
             uic.User_Films_create.generate_films(self)
         elif button == "buytickets": 
-            ubc.User_Buytickets_create.generate_buytickets_table(self)
+            ubc.User_Buytickets_create.generate_buytickets(self)

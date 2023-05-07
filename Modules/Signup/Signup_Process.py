@@ -12,7 +12,7 @@ class Signup_Process:
     @staticmethod
     def login_button_handle(obj):
         obj.window.destroy()
-        app = loginview.LoginView()
+        app = loginview.Login_View()
         app.window.mainloop()
 
     @staticmethod 

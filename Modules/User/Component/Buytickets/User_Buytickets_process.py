@@ -6,21 +6,22 @@ import Service.Widget_service as ws
 
 class User_Buytickets_process:
 
+
     @staticmethod
     def add_to_cart(obj):
 
         #add to cart
-        obj.quantity.set(obj.quantity_entry.get())
-        obj.price.set(obj.price_entry.get())
+        obj.quantity.set(obj.entry_3.get())
+        obj.price.set(obj.entry_4.get())
         api = Api.User_Api()
         check = api.add_item_to_cart(
-            obj.search_entry.get(), obj.quantity_entry_bframe.get())
+            obj.entry_6.get(), obj.entry_7.get())
         if check == -1:
             messagebox.showinfo("Error", "Cannot find this movie")
         elif check == -2:
             messagebox.showinfo("Error", "Not enough tickets available")
-            obj.search_entry.delete(0, END)
-            obj.quantity_entry_bframe.delete(0, END)
+            obj.entry_6.delete(0, END)
+            obj.entry_7.delete(0, END)
         elif check == -3:
             messagebox.showinfo("Error", "Error quantity")
         elif check == -4:
@@ -31,8 +32,8 @@ class User_Buytickets_process:
             messagebox.showinfo("Success", "Item updated")
         else:
             # add check to treeview
-            obj.tree.insert("", "end", values=(check['Film_id'], check['Film'], check['Quantity'], check['Price']))
-            obj.film_id.set(check["Film_id"])
+            obj.tree.insert("", "end", values=(check['Film_ID'], check['Film'], check['Quantity'], check['Price']))
+            obj.film_id.set(check["Film_ID"])
             obj.film.set(check["Film"])
             obj.quantity.set(check["Quantity"])
             obj.price.set(check["Price"])
@@ -55,8 +56,8 @@ class User_Buytickets_process:
             obj.film.set("")
             obj.quantity.set("")
             obj.price.set("")
-            obj.search_entry.delete(0, END)
-            obj.quantity_entry.delete(0, END)
+            obj.entry_6.delete(0, END)
+            obj.entry_7.delete(0, END)
             messagebox.showinfo("Success", "Successfully removed ticket from cart")
         except:
             messagebox.showinfo("Error", "No ticket selected")
