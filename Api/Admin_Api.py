@@ -8,22 +8,21 @@ class Admin_Api(main_api.Api):
         super().__init__()
         self.connector()
 
-    def add_new_ticket(self, json_data):
+    def add_new_item(self, json_data):
         # Get Film_ID from json_data
         film_id = json_data["Film_ID"]
         # Get ticket information from Film_ID in the collection
-        ticket = self.warehouse_collection.find_one(
-            {'Film_ID': film_id})
+        ticket = self.warehouse_collection.find_one({'Film_ID': film_id})
         if ticket is None:
             # Check if the information in json_data is complete or not
             S = 0
             for key, value in json_data.items():
-                if self.warehouse_collection.find_one({key: value}) is not None:
+                if self.warehouse_collection.find_one({key: value}) is None:
                     S += 1
                 else:
                     continue
-            if S == 5:  # (Film_ID, Film, Genre, Showtime, Price)
-                # If all 5 pieces of information are available, add a new ticket to the database
+            if S == 6:  # (Film_ID, Film, Genre, Showtime, Price)
+                # If all 6 pieces of information are available, add a new ticket to the database
                 self.warehouse_collection.insert_one(json_data)
                 return 0  # Success
             else:

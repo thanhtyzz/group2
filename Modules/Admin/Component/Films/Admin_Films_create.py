@@ -2,6 +2,7 @@ from tkinter import *
 from pathlib import Path
 import Modules.Admin.Component.Films.Admin_Films_process as app
 import Api.Admin_Api as Api
+from PIL import ImageTk, Image
 
 class Admin_Films_create:
     def __init__(self):
@@ -23,24 +24,37 @@ class Admin_Films_create:
         self.canvas.place(x=0, y=0)
 
     @staticmethod
+
+
+    @staticmethod
     def generate_films(obj):
-        # clear all frames
+        # Xóa các frame hiện tại
         for frame in obj.allframes:
-            frame.place_forget()
+            frame.destroy()
         obj.allframes = []
 
-        # create new frames
-        obj.formframe = Frame(obj.window, bg = '#4C4A4A')
-        obj.formframe.place(x = 121, y = 185, width = 444, height = 240)
-
-        obj.buttonframe = Frame(obj.window, bg = "#ffffff")
-        obj.buttonframe.place(x = 315, y = 630, width = 450, height = 65)
+        # Tạo frame mới
+        obj.formframe = Frame(obj.window, bg='#4C4A4A')
+        obj.formframe.place(x=121, y=185, width=444, height=240)
         obj.allframes.append(obj.formframe)
+
+        obj.buttonframe = Frame(obj.window, bg="#ffffff")
+        obj.buttonframe.place(x=315, y=630, width=450, height=65)
         obj.allframes.append(obj.buttonframe)
 
-        #Generate product button and product form 
+        # Tạo các thành phần trong frame
         Admin_Films_create.generate_films_button(obj)
         Admin_Films_create.generate_films_form(obj)
+
+        image_path = "D:\do-an-cuoi-ki-nhom-2\Images\Admin\Films\letter.png"
+        image = Image.open(image_path)
+        image = image.resize((111, 235))
+        photo = ImageTk.PhotoImage(image)
+        label = Label(obj.formframe, image=photo)
+        label.image = photo
+        label.place(x=0.0, y=0.0)
+        label.configure(background='#4C4A4A')
+
 
     @staticmethod
     def generate_films_form(obj):
@@ -51,7 +65,6 @@ class Admin_Films_create:
         obj.product_id.set(api.get_last_prod_id())
         
         assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Films")
-        
         
         obj.background_img = PhotoImage(file=assets_path / "Background.png")
         obj.background = obj.canvas.create_image(342.0, 246.0, image=obj.background_img)
@@ -74,10 +87,7 @@ class Admin_Films_create:
 
         obj.stock_entry = Entry(obj.formframe, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
         obj.stock_entry.place(x=150.0, y=210.0, width=284.0, height=24.0)
-
-        obj.letter = PhotoImage(file=assets_path / "Textbox.png")
-        obj.letter.place(x=150.0, y=10.0, width=284.0, height=24.0)
-        # obj.letter = ojb.canvas.create_image(85.0, 170.0, image=self.phim1)
+        
     @staticmethod
     def generate_films_button(obj):
         assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Films")
@@ -92,63 +102,3 @@ class Admin_Films_create:
         obj.remove_button = Button(image=obj.remove_image, borderwidth=0, highlightthickness=0,
                                command=lambda: app.Admin_Films_process.remove_button_handle(obj))
         obj.remove_button.place(x=361.0, y=448.0, width=104.0, height=28.0)
-
-
-        # obj.background_img = PhotoImage(file=assets_path / "Background.png")
-        # self.films_image = PhotoImage(file=assets_path / "Button_Films.png")
-        # self.inventory_image = PhotoImage(file=assets_path / "Button_Inventory.png")
-        # self.sales_image = PhotoImage(file=assets_path / "Button_Sales.png")
-        # self.users_image = PhotoImage(file=assets_path / "Button_Users.png")
-        # self.switch_image = PhotoImage(file=assets_path / "Button_Switch.png")
-        # self.exit_image = PhotoImage(file=assets_path / "Button_Exit.png")
-        # self.entry_image = PhotoImage(file=assets_path / "Textbox.png")
-        # self.addfilm_image = PhotoImage(file=assets_path / "Button_Addfilm.png")
-        # self.remove_image = PhotoImage(file=assets_path / "Button_Remove.png")
-
-        # self.background = self.background_img.create_image(342.0, 246.0, image=self.background_img)
-
-        # self.films_button = Button(image=self.films_image, borderwidth=0, highlightthickness=0,
-        #                        command=lambda: self.click_button("films"))
-        # self.films_button.place(x=10.0, y=124.0, width=97.0, height=37.0)
-
-        # self.inventory_button = Button(image=self.inventory_image, borderwidth=0, highlightthickness=0,
-        #                        command=lambda: self.click_button("inventory"))
-        # self.inventory_button.place(x=118.0, y=125.0, width=102.0, height=35.0)
-
-        # self.sales_button = Button(image=self.sales_image, borderwidth=0, highlightthickness=0,
-        #                        command=lambda: self.click_button("sales"))
-        # self.sales_button.place(x=233.0, y=126.0, width=97.0, height=33.0)
-
-        # self.users_button = Button(image=self.users_image, borderwidth=0, highlightthickness=0,
-        #                        command=lambda: self.click_button("users"))
-        # self.users_button.place(x=349.0, y=126.0, width=97.0, height=33.0)
-
-        # self.switch_button = Button(image=self.switch_image, borderwidth=0, highlightthickness=0,
-        #                        command=lambda: self.switch_account())
-        # self.switch_button.place(x=461.0, y=126.0, width=97.0, height=33.0)
-
-        # self.exit_button = Button(image=self.exit_image, borderwidth=0, highlightthickness=0,
-        #                        command=lambda: self.exit_button())
-        # self.exit_button.place(x=576.0, y=126.0, width=97.0, height=33.0)
-
-
-        # self.entry_1 = self.canvas.create_image(400.5, 398.0, image=self.entry_image)
-
-        # self.entry_2 = self.canvas.create_image(400.5, 360.0, image=self.entry_image)
-
-        # self.entry_3 = self.canvas.create_image(400.5, 322.0, image=self.entry_image)
-
-        # self.entry_4 = self.canvas.create_image(400.5, 284.0, image=self.entry_image)
-
-        # self.entry_5 = self.canvas.create_image(400.5, 246.0, image=self.entry_image)
-
-        
-
-        # self.addfilm_button = Button(image=self.addfilm_image, borderwidth=0, highlightthickness=0,
-        #                        command=lambda: app.Admin_Films_process.addfilm_button_handle(self))
-        # self.addfilm_button.place(x=219.0, y=448.0, width=104.0, height=28.0)
-
-        # self.remove_button = Button(image=self.remove_image, borderwidth=0, highlightthickness=0,
-        #                        command=lambda: app.Admin_Films_process.remove_button_handle(self))
-        # self.remove_button.place(x=361.0, y=448.0, width=104.0, height=28.0)
-        # # self.window.resizable(0, 0)
