@@ -126,26 +126,3 @@ class Trendingnow_process:
 #                     label.grid(row=row, column=col)
 #                     row_widgets.append(label)
 #             self.widgets.append(row_widgets)
-
-#     def pack(self):
-#         self.create_widgets()
-
-
-#     # Example usage:
-#     def trendingnow(self):
-#         posters = [
-#             MoviePoster("The Shawshank Redemption", "D:\do-an-cuoi-ki-nhom-2\Modules\Signup\Background.png"),
-#             MoviePoster("The Godfather", "D:\do-an-cuoi-ki-nhom-2\Modules\Signup\Background.png"),
-#             MoviePoster("The Dark Knight", "Background.png"),
-#             MoviePoster("12 Angry Men", "Background.png"),
-#             # MoviePoster("Schindler's List", "5.jpg"),
-#             # MoviePoster("The Lord of the Rings: The Return of the King", "6.jpg"),
-#             # MoviePoster("Pulp Fiction", "7.jpg"),
-#             # MoviePoster("The Good, the Bad and the Ugly", "8.jpg"),
-#             # MoviePoster("Fight Club", "fight_club.jpg"),
-#             # MoviePoster("Forrest Gump", "9.jpg"),
-#         ]
-#         root = tk.Tk()
-#         grid = MoviePosterGrid(root, posters, rows=2, cols=5, width=6850, height=4920)
-#         grid.pack()
-#         root.mainloop()

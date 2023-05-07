@@ -74,8 +74,8 @@ class Tredingnow_View:
         self.screen_height = self.window.winfo_screenheight()
 
         # set window width and height
-        self.window_width = 685
-        self.window_height = 492
+        self.window_width = 1080
+        self.window_height = 720
         # set window position
         self.window.geometry("%dx%d+%d+%d" % (self.window_width, self.window_height,
                              (self.screen_width - self.window_width) / 2, (self.screen_height - self.window_height) / 2))
@@ -86,16 +86,20 @@ class Tredingnow_View:
 
         assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Trendingnow")
 
-        self.phim1 = PhotoImage(file=assets_path / "D:\do-an-cuoi-ki-nhom-2\Images\SignUp\Background.png")
-        self.phim2 = PhotoImage(file=assets_path / "D:\do-an-cuoi-ki-nhom-2\Images\Trendingnow\phim2.jpg")
-        self.phim3 = PhotoImage(file=assets_path / "phim3.jpg")
-        self.phim4 = PhotoImage(file=assets_path / "phim4.jpg")
-        self.phim5 = PhotoImage(file=assets_path / "phim5.jpg")
-        self.phim6 = PhotoImage(file=assets_path / "phim6.jpg")
+        self.phim1 = PhotoImage(file=assets_path / "D:\do-an-cuoi-ki-nhom-2\Images\SignUp\Button_Login.png")
+        self.phim2 = PhotoImage(file=assets_path / "D:\do-an-cuoi-ki-nhom-2\Images\SignUp\Button_Login.png")
+        # self.phim3 = PhotoImage(file=assets_path / "phim3.jpg")
+        # self.phim4 = PhotoImage(file=assets_path / "phim4.jpg")
+        # self.phim5 = PhotoImage(file=assets_path / "phim5.jpg")
+        # self.phim6 = PhotoImage(file=assets_path / "phim6.jpg")
 
-        self.background = self.canvas.create_image(342.0, 246.0, image=self.phim1)
+        self.vitri1 = self.canvas.create_image(342.0, 246.0, image=self.phim1)
+        self.vitri2 = self.canvas.create_image(500, 500.0, image=self.phim2)
 
-        # self.phim1 = Button(image=self.login_image, borderwidth=0, highlightthickness=0,
+        # self.phim11 = Button(image=self.phim1, borderwidth=0, highlightthickness=0,
+        #                        command=lambda: signup_process.Signup_Process.Trendingnow_process(self))
+        # self.phim11(x=10.0, y=124.0, width=97.0, height=37.0)
+        # self.phim2 = Button(image=self.login_image, borderwidth=0, highlightthickness=0,
         #                        command=lambda: signup_process.Signup_Process.Trendingnow_process(self))
         # self.login_button.place(x=532.0, y=12.0, width=69.0, height=33.0)
 
