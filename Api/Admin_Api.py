@@ -8,22 +8,21 @@ class Admin_Api(main_api.Api):
         super().__init__()
         self.connector()
 
-    def add_new_ticket(self, json_data):
+    def add_new_item(self, json_data):
         # Get Film_ID from json_data
         film_id = json_data["Film_ID"]
         # Get ticket information from Film_ID in the collection
-        ticket = self.warehouse_collection.find_one(
-            {'Film_ID': film_id})
+        ticket = self.warehouse_collection.find_one({'Film_ID': film_id})
         if ticket is None:
             # Check if the information in json_data is complete or not
             S = 0
             for key, value in json_data.items():
-                if self.warehouse_collection.find_one({key: value}) is not None:
+                if self.warehouse_collection.find_one({key: value}) is None:
                     S += 1
                 else:
                     continue
-            if S == 5:  # (Film_ID, Film, Genre, Showtime, Price)
-                # If all 5 pieces of information are available, add a new ticket to the database
+            if S == 6:  # (Film_ID, Film, Genre, Showtime, Price)
+                # If all 6 pieces of information are available, add a new ticket to the database
                 self.warehouse_collection.insert_one(json_data)
                 return 0  # Success
             else:
@@ -31,11 +30,11 @@ class Admin_Api(main_api.Api):
                 return -1
         else:
             # Update the number of tickets in the database
-            current_quantity = ticket["Quantity"]
+            current_quantity = ticket["Stock"]
             if current_quantity < 30:
-                new_quantity = current_quantity + json_data["Quantity"]
+                new_quantity = current_quantity + json_data["Stock"]
                 self.warehouse_collection.update_one(
-                    {'Film_ID': film_id}, {'$set': {'Quantity': new_quantity}})
+                    {'Film_ID': film_id}, {'$set': {'Stock': new_quantity}})
                 return 0  # Success
             else:
                 # Error: ticket quantity is full
@@ -61,7 +60,7 @@ class Admin_Api(main_api.Api):
             updated_fields['Genre'] = json_data['Genre']
         # Update the ticket information in the database
         if updated_fields:
-            self.warehouse_collection.update_one({'_id': _id}, {'$set': updated_fields})
+            self.warehouse_collection.update_one({'Film_ID': film_id}, {'$set': updated_fields})
             return 0  # Update successful
         else:
             # No new information was updated
@@ -69,12 +68,11 @@ class Admin_Api(main_api.Api):
 
     def remove_items(self, film_id):
         # Get ticket information from json_data
-        ticket = self.warehouse_collection.find_one(
-            {'Film_ID': film_id})
+        ticket = self.warehouse_collection.find_one({'Film_ID': film_id})
         if ticket is None:
             # Error: ticket not found
             return -2
-        else:
-            _id = ticket['_id']  # get _id of ticket
-            self.warehouse_collection.delete_one({'_id': _id})
+        elif ticket is not None:
+            film_id = ticket['Film_ID']  # get id of ticket
+            self.warehouse_collection.delete_one({'Film_ID': film_id})
             return 0  # success
