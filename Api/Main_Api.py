@@ -19,7 +19,11 @@ class Api:
         connection_string = f"mongodb+srv://tranvuduyenan714:qazwsxedc@group2.nfzbc0b.mongodb.net/"
 
         # Tạo kết nối đến MongoDB Atlas
+<<<<<<< HEAD
         self.client = MongoClient("connection_string")
+=======
+        self.client = MongoClient("localhost:27017")
+>>>>>>> 07312bda72f883438ef9b6cb2564bee84a35bbd5
 
         # Chọn cơ sở dữ liệu
         self.db = self.client['group2']
