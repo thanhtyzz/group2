@@ -51,19 +51,19 @@ class Admin_Main_View:
         self.inventory_button.place(x=118.0, y=125.0, width=102.0, height=35.0)
 
         self.sales_button = Button(image=self.sales_image, borderwidth=0, highlightthickness=0,
-                               command = self.click_button("sales"), relief="flat")
+                               command=lambda: self.click_button("sales"), relief="flat")
         self.sales_button.place(x=233.0, y=126.0, width=97.0, height=33.0)
 
         self.users_button = Button(image=self.users_image, borderwidth=0, highlightthickness=0,
-                               command = self.click_button("users"), relief="flat")
+                               command=lambda: self.click_button("users"), relief="flat")
         self.users_button.place(x=349.0, y=126.0, width=97.0, height=33.0)
 
         self.switch_button = Button(image=self.switch_image, borderwidth=0, highlightthickness=0,
-                               command = self.switch_account(), relief="flat")
+                               command=lambda: self.switch_account(), relief="flat")
         self.switch_button.place(x=461.0, y=126.0, width=97.0, height=33.0)
 
         self.exit_button = Button(image=self.exit_image, borderwidth=0, highlightthickness=0,
-                               command = self.exit(), relief="flat")
+                               command=lambda: self.exit(), relief="flat")
         self.exit_button.place(x=576.0, y=126.0, width=97.0, height=33.0)
         self.window.resizable(0, 0)
 

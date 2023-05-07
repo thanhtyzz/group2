@@ -6,7 +6,7 @@ import tkinter as tk
 from PIL import ImageTk, Image
 from tkinter import *
 
-class Sign_up_Process: 
+class Signup_Process: 
     
     # The screen displays a choice between "login" and "signup".
     @staticmethod
@@ -17,9 +17,9 @@ class Sign_up_Process:
 
     @staticmethod 
     def signup_button_handle(obj): 
-        username = obj.entry_3.get()
-        password = obj.entry_1.get()
-        reenterpassword = obj.entry_2.get()
+        username = obj.entry_1.get()
+        password = obj.entry_2.get()
+        reenterpassword = obj.entry_3.get()
         api = Signup_Api.Signup_Api()
         error = api.check_user_signup(username,password,reenterpassword)
         standard_pass = api.check_user_signup(password, username, reenterpassword)
