@@ -35,7 +35,7 @@ class Signup_View:
         self.background = self.canvas.create_image(342.0, 246.0, image=self.background_img)
 
         self.login_button = Button(image=self.login_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: signup_process.Sign_up_Process.login_button_handle(self))
+                               command=lambda: signup_process.Signup_Process.login_button_handle(self))
         self.login_button.place(x=532.0, y=12.0, width=69.0, height=33.0)
 
         self.signup_button_1 = Button(image=self.signup_image_1, borderwidth=0, highlightthickness=0,
@@ -55,11 +55,11 @@ class Signup_View:
         self.entry_3.place(x=268.0, y=339.0, width=172.0, height=30.0)
 
         self.trendingnow_button = Button(image=self.trendingnow_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: print("trendingnow_button clicked"), relief="flat")
+                               command=lambda: signup_process.MoviePosterGrid.trendingnow(self), relief="flat")
         self.trendingnow_button.place(x=465.0, y=427.0, width=203.0, height=55.0)
         # The 'Trending Now' button displays the movies that are currently trending
-
+       
         self.signup_button_2 = Button(image=self.signup_image_2, borderwidth=0, highlightthickness=0,
-                               command=lambda: signup_process.Sign_up_Process.signup_button_handle(self))
+                               command=lambda: signup_process.Signup_Process.signup_button_handle(self))
         self.signup_button_2.place(x=315.0, y=391.0, width=78.0, height=31.0)
         self.window.resizable(0, 0)
