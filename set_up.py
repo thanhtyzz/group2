@@ -110,4 +110,4 @@ else:
     import_invoice_data()
 
 #notification on the screen for user downloaded successfully, donot use tkinter
-ctypes.windll.user32.MessageBoxW(0, "Setup successfully!!!!!\nFrom G4 with love <3", "group2", 1)
+ctypes.windll.user32.MessageBoxW(0, "Setup successfully!!!!!\nFrom group2 with love <3", "group2", 1)

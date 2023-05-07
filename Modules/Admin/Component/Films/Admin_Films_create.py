@@ -4,34 +4,34 @@ import Modules.Admin.Component.Films.Admin_Films_process as app
 import Api.Admin_Api as Api
 
 class Admin_Films_create:
-    # def __init__(self):
-    #     self.window = Tk()
-    #     # get screen width and height
-    #     self.screen_width = self.window.winfo_screenwidth()
-    #     self.screen_height = self.window.winfo_screenheight()
+    def __init__(self):
+        self.window = Tk()
+        # get screen width and height
+        self.screen_width = self.window.winfo_screenwidth()
+        self.screen_height = self.window.winfo_screenheight()
 
-    #     # set window width and height
-    #     self.window_width = 685
-    #     self.window_height = 492
-    #     # set window position
-    #     self.window.geometry("%dx%d+%d+%d" % (self.window_width, self.window_height,
-    #                          (self.screen_width - self.window_width) / 2, (self.screen_height - self.window_height) / 2))
-    #     self.window.configure(bg="#FFFFFF")
-    #     self.window.title("Admin")
+        # set window width and height
+        self.window_width = 685
+        self.window_height = 492
+        # set window position
+        self.window.geometry("%dx%d+%d+%d" % (self.window_width, self.window_height,
+                             (self.screen_width - self.window_width) / 2, (self.screen_height - self.window_height) / 2))
+        self.window.configure(bg="#FFFFFF")
+        self.window.title("Admin")
 
-    #     self.canvas = Canvas(self.window, bg="#FFFFFF", height=492, width=685, bd=0, highlightthickness=0, relief="ridge")
-    #     self.canvas.place(x=0, y=0)
+        self.canvas = Canvas(self.window, bg="#FFFFFF", height=492, width=685, bd=0, highlightthickness=0, relief="ridge")
+        self.canvas.place(x=0, y=0)
 
     @staticmethod
-    def generate_products(obj):
+    def generate_films(obj):
         # clear all frames
         for frame in obj.allframes:
             frame.place_forget()
         obj.allframes = []
 
         # create new frames
-        obj.formframe = Frame(obj.window, bg = '#fccde0')
-        obj.formframe.place(x = 205, y = 255, width = 730, height = 350)
+        obj.formframe = Frame(obj.window, bg = '#4C4A4A')
+        obj.formframe.place(x = 121, y = 185, width = 444, height = 239)
 
         obj.buttonframe = Frame(obj.window, bg = "#ffffff")
         obj.buttonframe.place(x = 315, y = 630, width = 450, height = 65)
@@ -43,40 +43,40 @@ class Admin_Films_create:
         Admin_Films_create.generate_films_form(obj)
 
     @staticmethod
-    def generate_products_form(obj):
+    def generate_films_form(obj):
         # create form in form frame
         obj.product_id = StringVar()
 
         api = Api.Admin_Api()
         obj.product_id.set(api.get_last_prod_id())
         
-        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Component\Films")
+        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Films")
         
         obj.background_img = PhotoImage(file=assets_path / "Background.png")
-        obj.background = obj.background_img.create_image(342.0, 246.0, image=obj.background_img)
+        obj.background = obj.canvas.create_image(342.0, 246.0, image=obj.background_img)
 
         obj.entry_image = PhotoImage(file=assets_path / "Textbox.png")
         obj.film_id_entry = Entry(obj.formframe, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0, textvariable = obj.product_id)
-        obj.film_id_entry.place(x=258.0, y=196.0, width=285.0, height=24.0)
+        obj.film_id_entry.place(x=150.0, y=100.0, width=284.0, height=24.0)
 
         obj.film_entry = Entry(obj.formframe, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        obj.film_entry.place(x=258.0, y=233.0, width=285.0, height=24.0)
+        obj.film_entry.place(x=150.0, y=120.0, width=284.0, height=24.0)
 
         obj.genre_entry = Entry(obj.formframe, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        obj.genre_entry.place(x=258.0, y=271.0, width=285.0, height=24.0)
+        obj.genre_entry.place(x=150.0, y=140.0, width=284.0, height=24.0)
 
         obj.showtime_entry = Entry(obj.formframe, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        obj.showtime_entry.place(x=258.0, y=309.0, width=285.0, height=24.0)
+        obj.showtime_entry.place(x=150.0, y=160.0, width=284.0, height=24.0)
 
         obj.price_entry = Entry(obj.formframe, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        obj.price_entry.place(x=258.0, y=347.0, width=285.0, height=35.0)
+        obj.price_entry.place(x=150.0, y=180.0, width=284.0, height=24.0)
 
         obj.stock_entry = Entry(obj.formframe, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        obj.stock_entry.place(x=258.0, y=385.0, width=285.0, height=24.0)
+        obj.stock_entry.place(x=150.0, y=200.0, width=284.0, height=24.0)
 
     @staticmethod
-    def generate_products_button(obj):
-        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Component\Films")
+    def generate_films_button(obj):
+        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Films")
 
         obj.addfilm_image = PhotoImage(file=assets_path / "Button_Addfilm.png")
         obj.remove_image = PhotoImage(file=assets_path / "Button_Remove.png")
@@ -90,8 +90,7 @@ class Admin_Films_create:
         obj.remove_button.place(x=361.0, y=448.0, width=104.0, height=28.0)
 
 
-
-        # self.background_img = PhotoImage(file=assets_path / "Background.png")
+        # obj.background_img = PhotoImage(file=assets_path / "Background.png")
         # self.films_image = PhotoImage(file=assets_path / "Button_Films.png")
         # self.inventory_image = PhotoImage(file=assets_path / "Button_Inventory.png")
         # self.sales_image = PhotoImage(file=assets_path / "Button_Sales.png")
