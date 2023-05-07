@@ -78,5 +78,21 @@
         "Showtime": "2023-04-08",
         "Price": 75,
         "Stock": 500
+    },
+    {
+        "Film_ID": "T011",
+        "Film": "Titanic",
+        "Genre": "Drama",
+        "Showtime": "2023-04-09",
+        "Price": 75,
+        "Stock": 500
+    },
+    {
+        "Film_ID": "T012",
+        "Film": "Avengers Endgame",
+        "Genre": "Drama",
+        "Showtime": "2023-04-10",
+        "Price": 75,
+        "Stock": 500
     }
 ]
