@@ -2,7 +2,9 @@ import Api.Login_Api as Login_Api
 import Api.Signup_Api as Signup_Api
 import Modules.Login.Login_View as loginview
 from tkinter import END, messagebox as mbox
-
+import tkinter as tk
+from PIL import ImageTk, Image
+from tkinter import *
 
 class Sign_up_Process: 
     
