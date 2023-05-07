@@ -86,45 +86,16 @@ class Tredingnow_View:
 
         assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Trendingnow")
 
-        self.phim1 = PhotoImage(file=assets_path / "D:\do-an-cuoi-ki-nhom-2\Images\SignUp\Button_Login.png")
-        self.phim2 = PhotoImage(file=assets_path / "D:\do-an-cuoi-ki-nhom-2\Images\SignUp\Button_Login.png")
-        # self.phim3 = PhotoImage(file=assets_path / "phim3.jpg")
-        # self.phim4 = PhotoImage(file=assets_path / "phim4.jpg")
-        # self.phim5 = PhotoImage(file=assets_path / "phim5.jpg")
-        # self.phim6 = PhotoImage(file=assets_path / "phim6.jpg")
+        self.phim1 = PhotoImage(file=assets_path / "image_1.png")
+        self.phim2 = PhotoImage(file=assets_path / "image_1.png")
+        self.phim3 = PhotoImage(file=assets_path / "image_1.png")
+        self.phim4 = PhotoImage(file=assets_path / "image_1.png")
+        self.phim5 = PhotoImage(file=assets_path / "image_1.png")
+        self.phim6 = PhotoImage(file=assets_path / "image_1.png")
 
-        self.vitri1 = self.canvas.create_image(342.0, 246.0, image=self.phim1)
-        self.vitri2 = self.canvas.create_image(500, 500.0, image=self.phim2)
+        self.vitri1 = self.canvas.create_image(85.0, 170.0, image=self.phim1)
+        self.vitri2 = self.canvas.create_image(260.0, 170.0, image=self.phim2)
 
-        # self.phim11 = Button(image=self.phim1, borderwidth=0, highlightthickness=0,
-        #                        command=lambda: signup_process.Signup_Process.Trendingnow_process(self))
-        # self.phim11(x=10.0, y=124.0, width=97.0, height=37.0)
-        # self.phim2 = Button(image=self.login_image, borderwidth=0, highlightthickness=0,
-        #                        command=lambda: signup_process.Signup_Process.Trendingnow_process(self))
-        # self.login_button.place(x=532.0, y=12.0, width=69.0, height=33.0)
-
-        # self.signup_button_1 = Button(image=self.signup_image_1, borderwidth=0, highlightthickness=0,
-        #                        command=lambda: print("signup_button_1 clicked"), relief="flat")
-        # self.signup_button_1.place(x=607.0, y=12.0, width=70.0, height=33.0)
-
-        # self.entry_bg_1 = self.canvas.create_image(354.0, 230.0, image=self.entry_image)
-        # self.entry_1 = Entry(bd=0, bg="#F8EBD1", fg="#000716", highlightthickness=0)
-        # self.entry_1.place(x=268.0, y=214.0, width=172.0, height=30.0)
-
-        # self.entry_bg_2 = self.canvas.create_image(354.0, 293.0, image=self.entry_image)
-        # self.entry_2 = Entry(bd=0, bg="#F8EBD1", fg="#000716", highlightthickness=0)
-        # self.entry_2.place(x=268.0, y=277.0, width=172.0, height=30.0)
-
-        # self.entry_bg_3 = self.canvas.create_image(354.0, 355.0, image=self.entry_image)
-        # self.entry_3 = Entry(bd=0, bg="#F8EBD1", fg="#000716", highlightthickness=0)
-        # self.entry_3.place(x=268.0, y=339.0, width=172.0, height=30.0)
-
-        # self.trendingnow_button = Button(image=self.trendingnow_image, borderwidth=0, highlightthickness=0,
-        #                        command=lambda: signup_process.Trendingnow_process.trendingnow(self), relief="flat")
-        # self.trendingnow_button.place(x=465.0, y=427.0, width=203.0, height=55.0)
-        # # The 'Trending Now' button displays the movies that are currently trending
-       
-        # self.signup_button_2 = Button(image=self.signup_image_2, borderwidth=0, highlightthickness=0,
-        #                        command=lambda: signup_process.Signup_Process.signup_button_handle(self))
-        # self.signup_button_2.place(x=315.0, y=391.0, width=78.0, height=31.0)
-        # self.window.resizable(0, 0)
+        self.button = Button(image=self.phim1, borderwidth=0, highlightthickness=0,
+                               command=lambda: signup_process.Signup_Process.Trendingnow_process(self))
+        self.button.place(x=0.0, y=0.0, width=170.0, height=340.0)
