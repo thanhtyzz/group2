@@ -10,16 +10,16 @@ class Api:
     # connect to mongodb
     def connector(self):
         load_dotenv(find_dotenv())
-        username = os.getenv("tranvuduyenan714")
-        password = os.getenv("qazwsxedc")
-        cluster_name = os.getenv("group2")
-        database = os.getenv("Group2")
+        # username = os.getenv("tranvuduyenan714")
+        # password = os.getenv("qazwsxedc")
+        # cluster_name = os.getenv("group2")
+        # database = os.getenv("Group2")
 
-        # Tạo chuỗi kết nối
-        connection_string = f"mongodb+srv://tranvuduyenan714:qazwsxedc@group2.nfzbc0b.mongodb.net/"
+        ## Tạo chuỗi kết nối
+        # connection_string = f"mongodb+srv://tranvuduyenan714:qazwsxedc@group2.nfzbc0b.mongodb.net/"
 
         # Tạo kết nối đến MongoDB Atlas
-        self.client = MongoClient("connection_string")
+        self.client = MongoClient("localhost:27017")
 
         # Chọn cơ sở dữ liệu
         self.db = self.client['group2']
