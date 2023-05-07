@@ -2,16 +2,16 @@ from tkinter import *
 import Api.User_Api as Api
 from tkinter import ttk
 
-class User_Films_Process:
+class User_Films_process:
 
     @staticmethod
     def generate_films_table(obj):
         api = Api.User_Api()
         data = api.get_all_warehouse_data()
         #create a tree view in table frame
-        tree = ttk.Treeview(obj.tableframe, columns=("Film_ID","Film", "Genre", "Showtime", "Price", "Stock"), height = 10)
+        tree = ttk.Treeview(obj.tableframe, columns=("Film id","Film", "Genre", "Showtime", "Price", "Stock"), height = 10)
         tree.heading("#0")
-        tree.heading("#1", text = "Film_ID")
+        tree.heading("#1", text = "Film id")
         tree.heading("#2", text = "Film")
         tree.heading("#3", text = "Genre")
         tree.heading("#4", text = "Showtime")
@@ -30,6 +30,6 @@ class User_Films_Process:
         scrollbary= Scrollbar(obj.tableframe, orient = VERTICAL, command=tree.yview())
         scrollbary.grid(row=0, column=7, sticky=(N, S, W, E))
 
-        # add data to tree view
+        #add data to tree view
         for i in range(len(data)):
-            tree.insert("", i, text = str(i),  values = (data[i]['Film_ID'], data[i]['Film'], data[i]['Genre'], data[i]['Showtime'], data[i]['Price'], data[i]['Stock']))
+            tree.insert("", i, text = str(i),  values = (data[i]['Film id'], data[i]['Film'], data[i]['Genre'], data[i]['Showtime'], data[i]['Price'], data[i]['Stock']))
