@@ -5,8 +5,11 @@ from tkinter import END, messagebox as mbox
 import tkinter as tk
 from PIL import ImageTk, Image
 from tkinter import *
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+import Modules.Signup.Signup_View as suv
 
-class Sign_up_Process: 
+class Signup_Process: 
     
     # The screen displays a choice between "login" and "signup".
     @staticmethod
@@ -17,9 +20,9 @@ class Sign_up_Process:
 
     @staticmethod 
     def signup_button_handle(obj): 
-        username = obj.entry_3.get()
-        password = obj.entry_1.get()
-        reenterpassword = obj.entry_2.get()
+        username = obj.entry_1.get()
+        password = obj.entry_2.get()
+        reenterpassword = obj.entry_3.get()
         api = Signup_Api.Signup_Api()
         error = api.check_user_signup(username,password,reenterpassword)
         standard_pass = api.check_user_signup(password, username, reenterpassword)
@@ -79,63 +82,70 @@ class Sign_up_Process:
                 obj.entry_1.delete(0, END)
                 obj.entry_2.delete(0, END)
 
-class MoviePoster:
+class Trendingnow_process:
+    @staticmethod
+    def trendingnow(obj):
+        obj.window.destroy()
+        app = suv.Tredingnow_View()
+        app.window.mainloop()
 
-
+    
+# class MoviePoster:
     def __init__(self, title, image_path):
         self.title = title
         self.image_path = image_path
-   
+
     def load_image(self, width, height):
-        img = Image.open(self.image_path)
-        img = img.resize((width, height), Image.LANCZOS)
-        return ImageTk.PhotoImage(img)
+        image = mpimg.imread(self.image_path)
+        # Hiển thị hình ảnh
+        plt.imshow(image)
+        # plt.axis('off')
+        plt.show()
 
 
-class MoviePosterGrid:
-   
-    def __init__(self, master, posters, rows, cols, width, height):
-        self.master = master
-        self.posters = posters
-        self.rows = rows
-        self.cols = cols
-        self.width = width
-        self.height = height
-   
-    def create_widgets(self):
-        self.widgets = []
-        for row in range(self.rows):
-            row_widgets = []
-            for col in range(self.cols):
-                index = row * self.cols + col
-                if index < len(self.posters):
-                    poster = self.posters[index]
-                    img = poster.load_image(self.width, self.height)
-                    label = tk.Label(self.master, image=img)
-                    label.image = img
-                    label.grid(row=row, column=col)
-                    row_widgets.append(label)
-            self.widgets.append(row_widgets)
-   
-    def pack(self):
-        self.create_widgets()
+# class MoviePosterGrid:
+#     def __init__(self, master, posters, rows, cols, width, height):
+#         self.master = master
+#         self.posters = posters
+#         self.rows = rows
+#         self.cols = cols
+#         self.width = width
+#         self.height = height
+
+#     def create_widgets(self):
+#         self.widgets = []
+#         for row in range(self.rows):
+#             row_widgets = []
+#             for col in range(self.cols):
+#                 index = row * self.cols + col
+#                 if index < len(self.posters):
+#                     poster = self.posters[index]
+#                     img = poster.load_image(self.width, self.height)
+#                     label = tk.Label(self.master, image=img)
+#                     label.image = img
+#                     label.grid(row=row, column=col)
+#                     row_widgets.append(label)
+#             self.widgets.append(row_widgets)
+
+#     def pack(self):
+#         self.create_widgets()
 
 
-    # Example usage:
-    def trendingnow(self):
-        posters = [
-        MoviePoster("The Shawshank Redemption", "Background.png"),
-        MoviePoster("The Godfather", "Background.png"),
-        MoviePoster("The Dark Knight", "Background.png"),
-        MoviePoster("12 Angry Men", "Background.png"),
-        # MoviePoster("Schindler's List", "5.jpg"),
-        # MoviePoster("The Lord of the Rings: The Return of the King", "6.jpg"),
-        # MoviePoster("Pulp Fiction", "7.jpg"),
-        # MoviePoster("The Good, the Bad and the Ugly", "8.jpg"),
-        # MoviePoster("Fight Club", "fight_club.jpg"),
-        # MoviePoster("Forrest Gump", "9.jpg"),
-            ]
-        root = tk.Tk()
-        grid = MoviePosterGrid(root, posters, rows=2, cols=5, width=200, height=300)
-        grid.pack()
-        root.mainloop()
+#     # Example usage:
+#     def trendingnow(self):
+#         posters = [
+#             MoviePoster("The Shawshank Redemption", "D:\do-an-cuoi-ki-nhom-2\Modules\Signup\Background.png"),
+#             MoviePoster("The Godfather", "D:\do-an-cuoi-ki-nhom-2\Modules\Signup\Background.png"),
+#             MoviePoster("The Dark Knight", "Background.png"),
+#             MoviePoster("12 Angry Men", "Background.png"),
+#             # MoviePoster("Schindler's List", "5.jpg"),
+#             # MoviePoster("The Lord of the Rings: The Return of the King", "6.jpg"),
+#             # MoviePoster("Pulp Fiction", "7.jpg"),
+#             # MoviePoster("The Good, the Bad and the Ugly", "8.jpg"),
+#             # MoviePoster("Fight Club", "fight_club.jpg"),
+#             # MoviePoster("Forrest Gump", "9.jpg"),
+#         ]
+#         root = tk.Tk()
+#         grid = MoviePosterGrid(root, posters, rows=2, cols=5, width=6850, height=4920)
+#         grid.pack()
+#         root.mainloop()
