@@ -15,7 +15,7 @@ class Api:
         # cluster_name = os.getenv("group2")
         # database = os.getenv("Group2")
 
-        ## Tạo chuỗi kết nối
+        # # Tạo chuỗi kết nối
         # connection_string = f"mongodb+srv://tranvuduyenan714:qazwsxedc@group2.nfzbc0b.mongodb.net/"
 
         # Tạo kết nối đến MongoDB Atlas
