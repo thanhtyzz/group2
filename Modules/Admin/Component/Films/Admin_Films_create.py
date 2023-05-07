@@ -16,10 +16,10 @@ class Admin_Films_create:
         # set window position
         self.window.geometry("%dx%d+%d+%d" % (self.window_width, self.window_height,
                              (self.screen_width - self.window_width) / 2, (self.screen_height - self.window_height) / 2))
-        self.window.configure(bg="#FFFFFF")
+        self.window.configure(bg="#4C4A4A")
         self.window.title("Admin")
 
-        self.canvas = Canvas(self.window, bg="#FFFFFF", height=492, width=685, bd=0, highlightthickness=0, relief="ridge")
+        self.canvas = Canvas(self.window, bg="#4C4A4A", height=492, width=685, bd=0, highlightthickness=0, relief="ridge")
         self.canvas.place(x=0, y=0)
 
     @staticmethod
@@ -31,7 +31,7 @@ class Admin_Films_create:
 
         # create new frames
         obj.formframe = Frame(obj.window, bg = '#4C4A4A')
-        obj.formframe.place(x = 121, y = 185, width = 444, height = 239)
+        obj.formframe.place(x = 121, y = 185, width = 444, height = 240)
 
         obj.buttonframe = Frame(obj.window, bg = "#ffffff")
         obj.buttonframe.place(x = 315, y = 630, width = 450, height = 65)
@@ -52,28 +52,32 @@ class Admin_Films_create:
         
         assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Films")
         
+        
         obj.background_img = PhotoImage(file=assets_path / "Background.png")
         obj.background = obj.canvas.create_image(342.0, 246.0, image=obj.background_img)
 
         obj.entry_image = PhotoImage(file=assets_path / "Textbox.png")
         obj.film_id_entry = Entry(obj.formframe, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0, textvariable = obj.product_id)
-        obj.film_id_entry.place(x=150.0, y=100.0, width=284.0, height=24.0)
+        obj.film_id_entry.place(x=150.0, y=10.0, width=284.0, height=24.0)
 
         obj.film_entry = Entry(obj.formframe, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        obj.film_entry.place(x=150.0, y=120.0, width=284.0, height=24.0)
+        obj.film_entry.place(x=150.0, y=50.0, width=284.0, height=24.0)
 
         obj.genre_entry = Entry(obj.formframe, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        obj.genre_entry.place(x=150.0, y=140.0, width=284.0, height=24.0)
+        obj.genre_entry.place(x=150.0, y=90.0, width=284.0, height=24.0)
 
         obj.showtime_entry = Entry(obj.formframe, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        obj.showtime_entry.place(x=150.0, y=160.0, width=284.0, height=24.0)
+        obj.showtime_entry.place(x=150.0, y=130.0, width=284.0, height=24.0)
 
         obj.price_entry = Entry(obj.formframe, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        obj.price_entry.place(x=150.0, y=180.0, width=284.0, height=24.0)
+        obj.price_entry.place(x=150.0, y=170.0, width=284.0, height=24.0)
 
         obj.stock_entry = Entry(obj.formframe, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        obj.stock_entry.place(x=150.0, y=200.0, width=284.0, height=24.0)
+        obj.stock_entry.place(x=150.0, y=210.0, width=284.0, height=24.0)
 
+        obj.letter = PhotoImage(file=assets_path / "Textbox.png")
+        obj.letter.place(x=150.0, y=10.0, width=284.0, height=24.0)
+        # obj.letter = ojb.canvas.create_image(85.0, 170.0, image=self.phim1)
     @staticmethod
     def generate_films_button(obj):
         assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Films")
