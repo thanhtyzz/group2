@@ -86,43 +86,11 @@ class Trendingnow_process:
     @staticmethod
     def trendingnow(obj):
         obj.window.destroy()
-        app = suv.Tredingnow_View()
+        app = suv.Trendingnow_View()
         app.window.mainloop()
-
     
-# class MoviePoster:
-    def __init__(self, title, image_path):
-        self.title = title
-        self.image_path = image_path
-
-    def load_image(self, width, height):
-        image = mpimg.imread(self.image_path)
-        # Hiển thị hình ảnh
-        plt.imshow(image)
-        # plt.axis('off')
-        plt.show()
-
-
-# class MoviePosterGrid:
-#     def __init__(self, master, posters, rows, cols, width, height):
-#         self.master = master
-#         self.posters = posters
-#         self.rows = rows
-#         self.cols = cols
-#         self.width = width
-#         self.height = height
-
-#     def create_widgets(self):
-#         self.widgets = []
-#         for row in range(self.rows):
-#             row_widgets = []
-#             for col in range(self.cols):
-#                 index = row * self.cols + col
-#                 if index < len(self.posters):
-#                     poster = self.posters[index]
-#                     img = poster.load_image(self.width, self.height)
-#                     label = tk.Label(self.master, image=img)
-#                     label.image = img
-#                     label.grid(row=row, column=col)
-#                     row_widgets.append(label)
-#             self.widgets.append(row_widgets)
+    @staticmethod
+    def phim_button(obj):
+        obj.window.destroy()
+        app = suv.Infor_View()
+        app.window.mainloop()
