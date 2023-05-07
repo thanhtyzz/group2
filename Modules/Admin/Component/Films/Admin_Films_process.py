@@ -10,7 +10,7 @@ class Admin_Films_process:
     def addfilm_button_handle(obj):
         api = admin_api.Admin_Api()
         # Get all data from films form
-        film_id = obj.film_id_entry
+        film_id = obj.film_id_entry.get()
         film = obj.film_entry.get()
         genre = obj.genre_entry.get()
         showtime = obj.showtime_entry.get()
@@ -29,6 +29,27 @@ class Admin_Films_process:
                 messagebox.showinfo("Success", "Inserted Succesfully")
             else:
                 messagebox.showinfo("Error", "Film already existed")
+
+    def remove_button_handle(obj):
+        api = admin_api.Admin_Api()
+        # Get all data from films form
+        film_id = obj.film_id_entry.get()
+        film = obj.film_entry.get()
+        genre = obj.genre_entry.get()
+        showtime = obj.showtime_entry.get()
+        price = obj.price_entry.get()
+        stock = obj.stock_entry.get()
+        if film_id == "" or film == "" or genre == "" or showtime == "" or price == "" or stock == "":
+            messagebox.showerror("Error", "Invalid Input")
+        else:
+            json_data = {"Film_ID": f"{film_id}", "Film": f"{film}",
+                         "Genre": f"{genre}", "Showtime": f"{showtime}",
+                         "Price": float(f"{price}"), "Stock": int(f"{stock}")}
+            check = api.remove_items(json_data)
+            if check == -2:
+                messagebox.showinfo("Error", "Film ID is not found")
+            elif check == 0:
+                messagebox.showinfo("Success", "Inserted Succesfully")
 
     @staticmethod
     def reset_button_handle(obj):
