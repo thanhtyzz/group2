@@ -1,7 +1,8 @@
 from tkinter import *
+from tkinter import messagebox
 import tkinter.messagebox as mbox
 import Api.Admin_Api as AdminApi
-
+import Modules.Signup.Signup_View as suv
 
 class Admin_User_Process:
 
@@ -47,7 +48,6 @@ class Admin_User_Process:
 
     @staticmethod
     def delete_button_handle(obj):
-
         # get choosen data of obj.tree
         data = obj.tree.item(obj.tree.selection())['values']
         # remove data from cart
@@ -57,3 +57,12 @@ class Admin_User_Process:
         obj.tree.delete(obj.tree.selection())
         mbox.showinfo("Success", "User removed")
         Admin_User_Process.reset_data(obj)
+
+    @staticmethod
+    def create_button_handle(self): 
+        if messagebox.askyesno("Warning!", "Go to signup page to create a new user account?"): 
+            self.window.destroy() 
+            app = suv.Signup_View()
+            app.window.mainloop() 
+        else:
+            return
