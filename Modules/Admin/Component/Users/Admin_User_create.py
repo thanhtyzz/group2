@@ -94,7 +94,7 @@ class Admin_User_create:
         
         assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Users")
         
-        image_path = "D:\do-an-cuoi-ki-nhom-2\Images\Admin\Users\image_1.png"
+        image_path = r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Users\image1.png"
         image = Image.open(image_path)
         image = image.resize((110, 245))
         photo = ImageTk.PhotoImage(image)
