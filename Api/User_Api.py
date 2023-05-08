@@ -107,7 +107,7 @@ class User_Api(main_api.Api):
             return -1
 
     # get all product name from warehouse collection
-    def get_all_film(self):
+    def get_all_film_name(self):
         cursor = self.warehouse_collection.find()
         film = []
         for data in cursor:
