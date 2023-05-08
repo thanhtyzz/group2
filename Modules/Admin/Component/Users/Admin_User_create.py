@@ -94,8 +94,14 @@ class Admin_User_create:
         
         assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Users")
         
-        obj.background_img = PhotoImage(file=assets_path / "Popup.image_1.png")
-        obj.background = obj.canvas.create_image(342.0, 246.0, image=obj.background_img)
+        image_path = "D:\do-an-cuoi-ki-nhom-2\Images\Admin\Users\image_1.png"
+        image = Image.open(image_path)
+        image = image.resize((110, 245))
+        photo = ImageTk.PhotoImage(image)
+        label = Label(obj.formframe1, image=photo)
+        label.image = photo
+        label.place(x=0.0, y=0.0)
+        label.configure(background='#4C4A4A')
 
         obj.entry_image = PhotoImage(file=assets_path / "Textbox_2.png")
         obj.film_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0, textvariable = obj.product_id)
@@ -119,7 +125,7 @@ class Admin_User_create:
         obj.add_stock_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
         obj.add_stock_entry.place(x=130.0, y=210.0, width=162.0, height=24.0)
 
-        image_path = "D:\do-an-cuoi-ki-nhom-2\Images\Admin\Inventory\letter.png"
+        image_path = "D:\do-an-cuoi-ki-nhom-2\Images\Admin\Users\image_1.png"
         image = Image.open(image_path)
         image = image.resize((110, 245))
         photo = ImageTk.PhotoImage(image)
