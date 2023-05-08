@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import ttk
 from pathlib import Path
 from PIL import ImageTk, Image
 from tkinter import messagebox as mbox
@@ -83,9 +84,8 @@ class Admin_User_create:
 
 
         # Tạo các thành phần trong frame
-        # Admin_User_create.generate_User_button(obj)
+        Admin_User_create.generate_users_button(obj)
         Admin_User_create.generate_users_form(obj)
-        # Admin_User_create.generate_User_entry(obj)
         # Admin_User_create.generate_User_table(obj)
 
     @staticmethod
@@ -94,82 +94,47 @@ class Admin_User_create:
         
         assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Users")
         
-        image_path = r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Users\image1.png"
-        image = Image.open(image_path)
-        image = image.resize((110, 245))
-        photo = ImageTk.PhotoImage(image)
-        label = Label(obj.formframe1, image=photo)
-        label.image = photo
-        label.place(x=0.0, y=0.0)
-        label.configure(background='#4C4A4A')
+        obj.username = StringVar()
+        obj.username.get()
 
-        obj.entry_image = PhotoImage(file=assets_path / "Textbox_2.png")
-        obj.film_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0, textvariable = obj.product_id)
-        obj.film_entry.place(x=130.0, y=10.0, width=162.0, height=24.0)
+        # image_path = r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Users\image1.png"
+        # image = Image.open(image_path)
+        # image = image.resize((280, 300))
+        # photo = ImageTk.PhotoImage(image)
+        # label = Label(obj.formframe1, image=photo)
+        # label.image = photo
+        # label.place(x=0.0, y=0.0)
+        # label.configure(background='#4C4A4A')
 
-        obj.film_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        obj.film_entry.place(x=130.0, y=50.0, width=162.0, height=24.0)
+        obj.entry_image = PhotoImage(file=assets_path / "entry_1.png")
+        obj.username_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0, textvariable = obj.username)
+        obj.username_entry.place(x=105.0, y=20.0, width=155.0, height=30.0)
 
-        obj.genre_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        obj.genre_entry.place(x=130.0, y=90.0, width=162.0, height=24.0)
+        obj.password_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        obj.password_entry.place(x=105.0, y=65.0, width=155.0, height=30.0)
 
-        obj.showtime_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        obj.showtime_entry.place(x=130.0, y=130.0, width=162.0, height=24.0)
-
-        obj.price_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        obj.price_entry.place(x=130.0, y=170.0, width=162.0, height=24.0)
-
-        obj.stock_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        obj.stock_entry.place(x=130.0, y=210.0, width=162.0, height=24.0)
-
-        obj.add_stock_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        obj.add_stock_entry.place(x=130.0, y=210.0, width=162.0, height=24.0)
-
-        image_path = "D:\do-an-cuoi-ki-nhom-2\Images\Admin\Users\image_1.png"
-        image = Image.open(image_path)
-        image = image.resize((110, 245))
-        photo = ImageTk.PhotoImage(image)
-        label = Label(obj.formframe1, image=photo)
-        label.image = photo
-        label.place(x=0.0, y=0.0)
-        label.configure(background='#4C4A4A')
+        obj.role_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        obj.role_entry.place(x=105.0, y=110.0, width=155.0, height=30.0)
 
     @staticmethod
-    def generate_inventory_entry(obj): 
-        # create form in form frame
-        obj.product_id = StringVar()
+    def generate_users_button(obj):
+        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Users")
 
-        obj.product_id.get()
-        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Inventory")
-        obj.entry_image = PhotoImage(file=assets_path / "Textbox_1.png")
-        obj.film_entry = Entry(obj.formframe2, bd=0, bg="pink", fg="#000716", highlightthickness=0, textvariable = obj.product_id)
-        obj.film_entry.place(x=2.0, y=10.0, width=180.0, height=24.0)
-        
-    @staticmethod
-    def generate_inventory_button(obj):
-        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Inventory")
-
-        obj.update_image = PhotoImage(file=assets_path / "Button_Update.png")
-        obj.remove_image = PhotoImage(file=assets_path / "Button_Remove.png")
-        obj.search_image = PhotoImage(file=assets_path / "Button_Search.png")
-        obj.reset_image = PhotoImage(file=assets_path / "Button_Reset.png")
+        obj.update_image = PhotoImage(file=assets_path / "button_9.png")
+        obj.delete_image = PhotoImage(file=assets_path / "button_8.png")
+        obj.create_image = PhotoImage(file=assets_path / "button_7.png")
 
         obj.update_button = Button(image=obj.update_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: aip.Admin_Inventory_Process.update_button_handle(obj))
-        obj.update_button.place(x=50.0, y=430.0, width=104.0, height=28.0)
+                               command=lambda: aup.Admin_User_Process.update_button_handle(obj))
+        obj.update_button.place(x=70.0, y=335.0, width=50.0, height=28.0)
 
-        obj.remove_button = Button(image=obj.remove_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: aip.Admin_Inventory_Process.remove_button_handle(obj))
-        obj.remove_button.place(x=170.0, y=430.0, width=104.0, height=28.0)
+        obj.delete_button = Button(image=obj.delete_image, borderwidth=0, highlightthickness=0,
+                               command=lambda: aup.Admin_User_Process.delete_button_handle(obj))
+        obj.delete_button.place(x=135.0, y=335.0, width=50.0, height=28.0)
 
-        obj.search_button = Button(image=obj.search_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: aip.Admin_Inventory_Process.search_button_handle(obj))
-        obj.search_button.place(x=520.0, y=174.5, width=65.0, height=24.0)
-
-        obj.reset_button = Button(image=obj.reset_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: aip.Admin_Inventory_Process.reset_button_handle(obj))
-        obj.reset_button.place(x=595.0, y=174.5, width=65.0, height=24.0)
-
+        obj.create_button = Button(image=obj.create_image, borderwidth=0, highlightthickness=0,
+                               command=lambda: aup.Admin_User_Process.create_button_handle(obj))
+        obj.create_button.place(x=200.0, y=335.0, width=100.0, height=28.0)
 
     @staticmethod
     def generate_inventory_table(obj):
