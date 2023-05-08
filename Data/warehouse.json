@@ -90,8 +90,72 @@
     {
         "Film_ID": "T012",
         "Film": "Avengers Endgame",
-        "Genre": "Drama",
+        "Genre": "Science Fiction",
         "Showtime": "2023-04-10",
+        "Price": 75,
+        "Stock": 500
+    },
+    {
+        "Film_ID": "T013",
+        "Film": "The Shawshank Redemption ",
+        "Genre": "Drama",
+        "Showtime": "2023-04-11",
+        "Price": 75,
+        "Stock": 500
+    },
+    {
+        "Film_ID": "T014",
+        "Film": "Pulp Fiction",
+        "Genre": "Crime",
+        "Showtime": "2023-04-12",
+        "Price": 75,
+        "Stock": 500
+    },
+    {
+        "Film_ID": "T015",
+        "Film": "The Matrix",
+        "Genre": "Action",
+        "Showtime": "2023-04-13",
+        "Price": 75,
+        "Stock": 500
+    },
+    {
+        "Film_ID": "T016",
+        "Film": "Forrest Gump",
+        "Genre": "Drama",
+        "Showtime": "2023-04-14",
+        "Price": 75,
+        "Stock": 500
+    },
+    {
+        "Film_ID": "T017",
+        "Film": "The Silence of the Lambs",
+        "Genre": "Thriller",
+        "Showtime": "2023-04-15",
+        "Price": 75,
+        "Stock": 500
+    },
+    {
+        "Film_ID": "T018",
+        "Film": "Jaws",
+        "Genre": "Horror",
+        "Showtime": "2023-04-16",
+        "Price": 75,
+        "Stock": 500
+    },
+    {
+        "Film_ID": "T019",
+        "Film": "The Exorcist",
+        "Genre": "Horror",
+        "Showtime": "2023-04-17",
+        "Price": 75,
+        "Stock": 500
+    },
+    {
+        "Film_ID": "T020",
+        "Film": "Psycho",
+        "Genre": "Thriller",
+        "Showtime": "2023-04-18",
         "Price": 75,
         "Stock": 500
     }
