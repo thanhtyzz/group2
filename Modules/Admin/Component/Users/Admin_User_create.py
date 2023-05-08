@@ -1,12 +1,12 @@
 from tkinter import *
 from pathlib import Path
+from PIL import ImageTk, Image
+from tkinter import messagebox as mbox
 import Service.Widget_service as ws
 import Api.Admin_Api as Api 
 import Modules.Admin.Component.Users.Admin_User_process as aup
-from tkinter import messagebox as mbox
 
-
-class Admin_Users_create:
+class Admin_User_create:
     def __init__(self):
         self.window = Tk()
         # get screen width and height
@@ -65,35 +65,154 @@ class Admin_Users_create:
                                command=lambda: aup.Admin_User_Process.exit_button_handle(self))
         self.exit_button.place(x=576.0, y=126.0, width=97.0, height=33.0)
 
-        self.canvas.create_rectangle(346.0, 178.0, 639.0, 469.0, fill="#D9D9D9", outline="")
-       
-        self.entry_1 = self.canvas.create_image(422.0, 195.0, image=self.entry_image)
-        self.entry_1 = Entry(bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        self.entry_1.place( x=141.6767578125, y=291.0, width=154.42425537109375, height=30.0)
+    @staticmethod
+    def generate_users(obj):
+        # Xóa các frame hiện tại
+        for frame in obj.allframes:
+            frame.destroy()
+        obj.allframes = []
 
-        self.entry_2 = self.canvas.create_image(216.0, 399.0, image=self.entry_image)
-        self.entry_2 = Entry(bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        self.entry_2.place( x=141.6767578125, y=245.0, width=154.42425537109375, height=30.0)
+        # Tạo frame mới
+        obj.formframe1 = Frame(obj.window, bg='#4C4A4A')
+        obj.formframe1.place(x=30, y=175, width=280, height=300)
+        obj.allframes.append(obj.formframe1)
 
-        self.entry_3 = self.canvas.create_image(216.0, 361.0, image=self.entry_image)
-        self.entry_3 = Entry(bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        self.entry_3.place( x=141.6767578125, y=199.0, width=154.42425537109375, height=30.0)
+        obj.formframe2 = Frame(obj.window, bg='pink')
+        obj.formframe2.place(x=335, y=175, width=320, height=300)
+        obj.allframes.append(obj.formframe2)
 
+
+        # Tạo các thành phần trong frame
+        # Admin_User_create.generate_User_button(obj)
+        Admin_User_create.generate_users_form(obj)
+        # Admin_User_create.generate_User_entry(obj)
+        # Admin_User_create.generate_User_table(obj)
+
+    @staticmethod
+    def generate_users_form(obj):
+        # create form in form frame
+        
+        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Users")
+        
+        obj.background_img = PhotoImage(file=assets_path / "Popup.image_1.png")
+        obj.background = obj.canvas.create_image(342.0, 246.0, image=obj.background_img)
+
+        obj.entry_image = PhotoImage(file=assets_path / "Textbox_2.png")
+        obj.film_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0, textvariable = obj.product_id)
+        obj.film_entry.place(x=130.0, y=10.0, width=162.0, height=24.0)
+
+        obj.film_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        obj.film_entry.place(x=130.0, y=50.0, width=162.0, height=24.0)
+
+        obj.genre_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        obj.genre_entry.place(x=130.0, y=90.0, width=162.0, height=24.0)
+
+        obj.showtime_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        obj.showtime_entry.place(x=130.0, y=130.0, width=162.0, height=24.0)
+
+        obj.price_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        obj.price_entry.place(x=130.0, y=170.0, width=162.0, height=24.0)
+
+        obj.stock_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        obj.stock_entry.place(x=130.0, y=210.0, width=162.0, height=24.0)
+
+        obj.add_stock_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        obj.add_stock_entry.place(x=130.0, y=210.0, width=162.0, height=24.0)
+
+        image_path = "D:\do-an-cuoi-ki-nhom-2\Images\Admin\Inventory\letter.png"
+        image = Image.open(image_path)
+        image = image.resize((110, 245))
+        photo = ImageTk.PhotoImage(image)
+        label = Label(obj.formframe1, image=photo)
+        label.image = photo
+        label.place(x=0.0, y=0.0)
+        label.configure(background='#4C4A4A')
+
+    @staticmethod
+    def generate_inventory_entry(obj): 
+        # create form in form frame
+        obj.product_id = StringVar()
+
+        obj.product_id.get()
+        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Inventory")
+        obj.entry_image = PhotoImage(file=assets_path / "Textbox_1.png")
+        obj.film_entry = Entry(obj.formframe2, bd=0, bg="pink", fg="#000716", highlightthickness=0, textvariable = obj.product_id)
+        obj.film_entry.place(x=2.0, y=10.0, width=180.0, height=24.0)
+        
+    @staticmethod
+    def generate_inventory_button(obj):
+        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Inventory")
+
+        obj.update_image = PhotoImage(file=assets_path / "Button_Update.png")
+        obj.remove_image = PhotoImage(file=assets_path / "Button_Remove.png")
+        obj.search_image = PhotoImage(file=assets_path / "Button_Search.png")
+        obj.reset_image = PhotoImage(file=assets_path / "Button_Reset.png")
+
+        obj.update_button = Button(image=obj.update_image, borderwidth=0, highlightthickness=0,
+                               command=lambda: aip.Admin_Inventory_Process.update_button_handle(obj))
+        obj.update_button.place(x=50.0, y=430.0, width=104.0, height=28.0)
+
+        obj.remove_button = Button(image=obj.remove_image, borderwidth=0, highlightthickness=0,
+                               command=lambda: aip.Admin_Inventory_Process.remove_button_handle(obj))
+        obj.remove_button.place(x=170.0, y=430.0, width=104.0, height=28.0)
+
+        obj.search_button = Button(image=obj.search_image, borderwidth=0, highlightthickness=0,
+                               command=lambda: aip.Admin_Inventory_Process.search_button_handle(obj))
+        obj.search_button.place(x=520.0, y=174.5, width=65.0, height=24.0)
+
+        obj.reset_button = Button(image=obj.reset_image, borderwidth=0, highlightthickness=0,
+                               command=lambda: aip.Admin_Inventory_Process.reset_button_handle(obj))
+        obj.reset_button.place(x=595.0, y=174.5, width=65.0, height=24.0)
+
+
+    @staticmethod
+    def generate_inventory_table(obj):
+        def clickprodtable(event):
+            # get selected film
+            cur = obj.tree.selection()
+            cur = obj.tree.item(cur)
+            try:
+                obj.selected_film = cur['values']
+                obj.film_name.set(cur['values'][1])
+                obj.genre.set(cur['values'][2])
+                obj.showtime.set(cur['values'][3])
+                obj.price.set(cur['values'][4])
+                obj.stock.set(cur['values'][5])
+            except:
+                pass
     
+        # create tree view
+        obj.tree = ttk.Treeview(obj.formframe3, columns=('Film_ID', 'Film', 'Genre', 'Showtime', 'Price', 'Stock'))
+        obj.tree.heading('#0')
+        obj.tree.heading('#1', text='Film_ID')
+        obj.tree.heading('#2', text='Film')
+        obj.tree.heading('#3', text='Genre')
+        obj.tree.heading('#4', text='Showtime')
+        obj.tree.heading('#5', text='Price')
+        obj.tree.heading('#6', text='Stock')
 
-        self.canvas.create_rectangle(47.0, 178.0, 319.02545166015625, 469.0, fill="#4C4A4A", outline="")
-    
-        self.update_button = Button(image=self.update_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: aup.Admin_User_Process.update_button_handle(self)) 
-        self.update_button.place(x=91.0, y=343.0, width=47.0, height=25.0)
+        obj.tree.column('#0', width=0)
+        obj.tree.column('#1', width=50)
+        obj.tree.column('#2', width=100)
+        obj.tree.column('#3', width=95)
+        obj.tree.column('#4', width=70)
+        obj.tree.column('#5', width=40)
+        obj.tree.column('#6', width=58)
+        obj.tree.bind("<<TreeviewSelect>>", clickprodtable)
 
-        self.delete_button = Button(image=self.delete_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: aup.Admin_User_Process.delete_button_handle(self)) 
-        self.delete_button.place(x=152.0, y=343.0, width=47.0, height=25.0)
+        # create scroll bar
+        obj.scrollbary = ttk.Scrollbar(obj.tableframe, orient=VERTICAL, command=obj.tree.yview)
 
-        self.create_button = Button(image=self.create_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: aup.Admin_User_create.create_user(obj))
-        self.create_button.place(x=213.0, y=343.0, width=80.0, height=25.0)
+        obj.tree.pack(side=RIGHT, fill=BOTH)
+        obj.scrollbary.pack(side=RIGHT, fill=Y)
+
+        api = Api.Admin_Api()
+        products = api.get_all_warehouse_data()
+
+        for product in products:
+            obj.tree.insert('', 'end', values=(product['Film_ID'], product['Film'], product['Genre'], product['Showtime'], product['Price'], product['Stock']))
+            
+        return obj.tree
 
 
 class create_user:
@@ -166,7 +285,3 @@ def create_user(obj):
             else: 
                 mbox.showinfo("Success", "New User created")
                 obj.tree.insert('', 'end', values=(username, password, roles))
-
-
-
-        

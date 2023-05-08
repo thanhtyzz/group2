@@ -51,15 +51,11 @@ class Admin_Inventory_create:
         obj.buttonframe.place(x=315, y=630, width=450, height=65)
         obj.allframes.append(obj.buttonframe)
 
-        
-
         # Tạo các thành phần trong frame
         Admin_Inventory_create.generate_inventory_button(obj)
         Admin_Inventory_create.generate_inventory_form(obj)
         Admin_Inventory_create.generate_inventory_entry(obj)
         Admin_Inventory_create.generate_inventory_table(obj)
-
-
 
     @staticmethod
     def generate_inventory_form(obj):

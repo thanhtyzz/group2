@@ -63,7 +63,7 @@ class Admin_Inventory_Process:
     def remove_button_handle(obj):
         api = AdminApi.Admin_Api()
         # Get the ID of the selected film in the treeview
-        film_id = obj.tree.item(obj.tree.selection())['values'][1]
+        film_id = obj.tree.item(obj.tree.selection())['values'][-1]
         check = api.remove_items(film_id)
         mbox.showinfo('Success', 'Update process completed')
         for item in obj.tree.get_children():
