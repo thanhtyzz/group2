@@ -39,11 +39,11 @@ class Admin_Sales_create:
 
         #create table frame 
         obj.tableframe = Frame(obj.window, bg = '#D9D9D9') 
-        obj.tableframe.place(x = 40, y = 150, width = 500, height = 200)
+        obj.tableframe.place(x = 40, y = 150, width = 600, height = 200)
         obj.allframes.append(obj.tableframe)
 
         Admin_Sales_create.generate_search(obj)
-        Admin_Sales_create.generate_treeview(obj)
+        Admin_Sales_create.generate_invoices_table(obj)
 
     @staticmethod 
     def generate_search(obj): 
@@ -124,43 +124,54 @@ class Admin_Sales_create:
 
         obj.window.resizable(0, 0)
 
-    @staticmethod 
-    def generate_treeview(obj): 
-        api = Api.Admin_Api() 
-        data = api.get_all_invoices_data() 
-        #create a tree view 
-        tree = ttk.Treeview(obj.tableframe, columns = ("Invoice_ID", "Invoice_Date", "Film_ID", "Film", "Quantity", "Price"), height=10)
-        tree.place(x = 0, y = 0, width = 1000, height = 400)
-        tree.heading("#0") 
-        tree.heading("Invoice_ID", text = "Invoice_ID") 
-        tree.heading("Invoice_Date", text = "Invoice_Date") 
-        tree.heading("Film_ID", text = "Film_ID")
-        tree.heading("Film", text = "Film")
-        tree.heading("Quantity", text = "Quantity")
-        tree.heading("Price", text = "Price")
+    @staticmethod
+    def generate_invoices_table(obj):
+        def clickprodtable(event):
+            # get selected film
+            cur = obj.tree.selection()
+            cur = obj.tree.item(cur)
+            try:
+                obj.selected_invoice = cur['values']
+                obj.invoice_id.set(cur['values'][1])
+                obj.date.set(cur['values'][2])
+                obj.product_id.set(cur['values'][3])
+                obj.product_name.set(cur['values'][4])
+                obj.quantity.set(cur['values'][5])
+                obj.price.set(cur['values'][6])
+            except:
+                pass
+    
+        # create tree view
+        obj.tree = ttk.Treeview(obj.tableframe, columns = ("Invoice_ID", "Invoice_Date", "Film_ID", "Film", "Quantity", "Price"))
+        obj.tree.heading('#0')
+        obj.tree.heading('#1', text='Invoice_ID')
+        obj.tree.heading('#2', text='Invoice_Date')
+        obj.tree.heading('#3', text='Film_ID')
+        obj.tree.heading('#4', text='Film')
+        obj.tree.heading('#5', text='Quantity')
+        obj.tree.heading('#6', text='Price')
 
-        tree.column("#0", width = 0, stretch =  NO)
-        tree.column("Invoice_ID", width = 150, stretch = NO)
-        tree.column("Invoice_Date", width = 150, stretch = NO)
-        tree.column("Film_ID", width = 150, stretch = NO)
-        tree.column("Film", width = 150, stretch = NO)
-        tree.column("Quantity", width = 150, stretch = NO)
-        tree.column("Price", width = 150, stretch = NO)
+        obj.tree.column('#0', width=0)
+        obj.tree.column('#1', width=100)
+        obj.tree.column('#2', width=100)
+        obj.tree.column('#3', width=100)
+        obj.tree.column('#4', width=100)
+        obj.tree.column('#5', width=100)
+        obj.tree.column('#6', width=100)
+        obj.tree.bind("<<TreeviewSelect>>", clickprodtable)
 
-        # # create scroll bar
-        # obj.scrollbary = ttk.Scrollbar(obj.tableframe, orient=VERTICAL, command=obj.tree.yview)
+        # create scroll bar
+        obj.scrollbary = ttk.Scrollbar(obj.tableframe, orient=VERTICAL, command=obj.tree.yview)
 
-        # obj.tree.pack(side=RIGHT, fill=BOTH)
-        # obj.scrollbary.pack(side=RIGHT, fill=Y)
-        tree.grid(row = 0, column = 0, columnspan = 7, sticky = (N, S, W, E))
-        scrollbarx = Scrollbar(obj.tableframe, orient = HORIZONTAL, command=tree.xview())
-        scrollbary= Scrollbar(obj.tableframe, orient = VERTICAL, command=tree.yview())
-        scrollbary.grid(row=0, column=7, sticky=(N, S, W, E))
+        obj.tree.pack(side=RIGHT, fill=BOTH)
+        obj.scrollbary.pack(side=RIGHT, fill=Y)
 
-        # for row in data:
-        #     tree.insert('', 'end', values = (row['Invoice_ID'], row['Invoice_Date'], row['Film_ID'], row['Film'], row['Quantity'], row['Price']))
-        # # return obj.tree
-        for i in range(len(data)):
-            tree.insert("", i, text = str(i),  values = (data[i]['Invoice_ID'], data[i]['Invoice_Date'], data[i]['Film_ID'], data[i]['Film'], data[i]['Quantity'], data[i]['Price']))
+        api = Api.Admin_Api()
+        invoices = api.get_all_invoices_data()
+
+        for invoice in invoices:
+            obj.tree.insert('', 'end', values=(invoice['Invoice_ID'], invoice['Invoice_Date'], invoice['Film_ID'], invoice['Film'], invoice['Quantity'], invoice['Price']))
+        obj.tree.pack(side=LEFT, fill=Y)    
+        return obj.tree
         
         
