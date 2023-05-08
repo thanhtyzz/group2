@@ -112,7 +112,6 @@ class User_Buytickets_create:
 
         obj.entry_image_1 = PhotoImage(file=assets_path / "Textbox_1.png")
         obj.entry_image_2 = PhotoImage(file=assets_path / "Textbox_2.png")
-        
 
         obj.entry_bg_1 = obj.canvas.create_image(231.0, 459.0, image=obj.entry_image_1)
         obj.entry_1 = Entry(obj.canvas, textvariable=obj.film_id, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
@@ -130,9 +129,7 @@ class User_Buytickets_create:
         obj.entry_4 = Entry(obj.canvas, textvariable = obj.price, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
         obj.entry_4.place(x=146.0, y=448.0, width=170.0, height=20.0)
 
-        obj.entry_bg_1 = obj.canvas.create_image(231.0, 459.0, image=obj.entry_image_1)
-        obj.entry_1 = Entry(obj.canvas, textvariable=obj.film_id, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        obj.entry_1.place(x=146.0, y=343.0, width=170.0, height=20.0)
+        
 
     @staticmethod
     def generate_buytickets_buttons(obj):
@@ -183,8 +180,14 @@ class User_Buytickets_create:
         obj.canvas.create_rectangle(340.0, 333.0, 678.0, 480.0, fill="#4C4A4A", outline="")
         obj.canvas.create_rectangle(10.0, 333.0, 330.0, 480.0, fill="#4C4A4A", outline="")
 
+        obj.image1 = PhotoImage(file=assets_path / "letter2.png")
+        obj.letter1 = obj.canvas.create_image(80.0, 405.0, image=obj.image1)
+
+        obj.image2 = PhotoImage(file=assets_path / "letter1.png")
+        obj.letter2 = obj.canvas.create_image(445.0, 405.0, image=obj.image2)
+
         # obj.formframe.place(x = 200, y = 333, width = 322, height = 145)
 
 
     
-        
+    

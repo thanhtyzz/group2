@@ -22,8 +22,9 @@ class User_Api(main_api.Api):
 
     def create_new_invoice_id(self):
         self.last_invoice_id = self.get_last_invoice_id()
-        id = self.last_invoice_id.split('-')[-1]
-        new_id = float(id) + 1
+        id = self.last_invoice_id
+        number = id[2:]
+        new_id = int(number) + 1
         self.new_invoice_id = 'ID' + str(100 + int(new_id)).replace("1", "0", 1)
 
     def add_item_to_cart(self, film, quantity):
