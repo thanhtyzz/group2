@@ -173,7 +173,7 @@ class Admin_Inventory_create:
         obj.tree.bind("<<TreeviewSelect>>", clickprodtable)
 
         # create scroll bar
-        obj.scrollbary = ttk.Scrollbar(obj.tableframe, orient=VERTICAL, command=obj.tree.yview)
+        obj.scrollbary = ttk.Scrollbar(obj.formframe3, orient=VERTICAL, command=obj.tree.yview)
 
         obj.tree.pack(side=RIGHT, fill=BOTH)
         obj.scrollbary.pack(side=RIGHT, fill=Y)

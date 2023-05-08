@@ -86,7 +86,7 @@ class Admin_User_create:
         # Tạo các thành phần trong frame
         Admin_User_create.generate_users_button(obj)
         Admin_User_create.generate_users_form(obj)
-        # Admin_User_create.generate_User_table(obj)
+        Admin_User_create.generate_users_table(obj)
 
     @staticmethod
     def generate_users_form(obj):
@@ -97,14 +97,14 @@ class Admin_User_create:
         obj.username = StringVar()
         obj.username.get()
 
-        # image_path = r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Users\image1.png"
-        # image = Image.open(image_path)
-        # image = image.resize((280, 300))
-        # photo = ImageTk.PhotoImage(image)
-        # label = Label(obj.formframe1, image=photo)
-        # label.image = photo
-        # label.place(x=0.0, y=0.0)
-        # label.configure(background='#4C4A4A')
+        image_path = r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Users\image_1.png"
+        image = Image.open(image_path)
+        image = image.resize((85, 140))
+        photo = ImageTk.PhotoImage(image)
+        label = Label(obj.formframe1, image=photo)
+        label.image = photo
+        label.place(x=0.0, y=0.0)
+        label.configure(background='#4C4A4A')
 
         obj.entry_image = PhotoImage(file=assets_path / "entry_1.png")
         obj.username_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0, textvariable = obj.username)
@@ -134,125 +134,45 @@ class Admin_User_create:
 
         obj.create_button = Button(image=obj.create_image, borderwidth=0, highlightthickness=0,
                                command=lambda: aup.Admin_User_Process.create_button_handle(obj))
-        obj.create_button.place(x=200.0, y=335.0, width=100.0, height=28.0)
+        obj.create_button.place(x=200.0, y=335.0, width=80.0, height=28.0)
 
     @staticmethod
-    def generate_inventory_table(obj):
+    def generate_users_table(obj):
         def clickprodtable(event):
             # get selected film
             cur = obj.tree.selection()
             cur = obj.tree.item(cur)
             try:
-                obj.selected_film = cur['values']
-                obj.film_name.set(cur['values'][1])
-                obj.genre.set(cur['values'][2])
-                obj.showtime.set(cur['values'][3])
-                obj.price.set(cur['values'][4])
-                obj.stock.set(cur['values'][5])
+                obj.selected_username = cur['values']
+                obj.user.set(cur['values'][1])
+                obj.password.set(cur['values'][2])
+                obj.role.set(cur['values'][3])
             except:
                 pass
     
         # create tree view
-        obj.tree = ttk.Treeview(obj.formframe3, columns=('Film_ID', 'Film', 'Genre', 'Showtime', 'Price', 'Stock'))
+        obj.tree = ttk.Treeview(obj.formframe2, columns=('Username', 'Password', 'Roles'))
         obj.tree.heading('#0')
-        obj.tree.heading('#1', text='Film_ID')
-        obj.tree.heading('#2', text='Film')
-        obj.tree.heading('#3', text='Genre')
-        obj.tree.heading('#4', text='Showtime')
-        obj.tree.heading('#5', text='Price')
-        obj.tree.heading('#6', text='Stock')
+        obj.tree.heading('#1', text='Username')
+        obj.tree.heading('#2', text='Password')
+        obj.tree.heading('#3', text='Roles')
 
         obj.tree.column('#0', width=0)
-        obj.tree.column('#1', width=50)
-        obj.tree.column('#2', width=100)
-        obj.tree.column('#3', width=95)
-        obj.tree.column('#4', width=70)
-        obj.tree.column('#5', width=40)
-        obj.tree.column('#6', width=58)
+        obj.tree.column('#1', width=100)
+        obj.tree.column('#2', width=147)
+        obj.tree.column('#3', width=70)
         obj.tree.bind("<<TreeviewSelect>>", clickprodtable)
 
         # create scroll bar
-        obj.scrollbary = ttk.Scrollbar(obj.tableframe, orient=VERTICAL, command=obj.tree.yview)
+        obj.scrollbary = ttk.Scrollbar(obj.formframe2, orient=VERTICAL, command=obj.tree.yview)
 
         obj.tree.pack(side=RIGHT, fill=BOTH)
         obj.scrollbary.pack(side=RIGHT, fill=Y)
 
         api = Api.Admin_Api()
-        products = api.get_all_warehouse_data()
+        users = api.get_all_users_data()
 
-        for product in products:
-            obj.tree.insert('', 'end', values=(product['Film_ID'], product['Film'], product['Genre'], product['Showtime'], product['Price'], product['Stock']))
+        for user in users:
+            obj.tree.insert('', 'end', values=(user['Username'], user['Password'], user['Roles']))
             
         return obj.tree
-
-
-class create_user:
-    def __init__(self):
-        self.window = Tk()
-        # get screen width and height
-        self.screen_width = self.window.winfo_screenwidth()
-        self.screen_height = self.window.winfo_screenheight()
-
-        # set window width and height
-        self.window_width = 366
-        self.window_height = 377
-        # set window position
-        self.window.geometry("%dx%d+%d+%d" % (self.window_width, self.window_height,
-                             (self.screen_width - self.window_width) / 2, (self.screen_height - self.window_height) / 2))
-        self.window.configure(bg="#FFFFFF")
-        self.window.title("Create new user")
-
-        self.canvas = Canvas(self.window, bg="#FFFFFF", height=377, width=366, bd=0, highlightthickness=0, relief="ridge")
-        self.canvas.place(x=0, y=0)
-
-
-
-@staticmethod 
-def create_user(obj): 
-        window = Tk()
-        window.title("Create new user") 
-        window.geometry("366x377") 
-        window.resizable(False, False) 
-        window.configure(background = "#FFFFFF") 
-
-        # create entry 
-        entry_username = Entry(window) 
-        entry_username.place(x = 100, y = 0, width = 200, height = 50) 
-
-        # create entry
-        entry_password = Entry(window) 
-        entry_password.place(x = 100, y = 70, width = 200, height = 50) 
-
-        # create entry
-        entry_role = ws.mycombobox(window)
-        entry_role.set_completion_list(["Admin", "User"])
-        entry_role.place(x = 100, y = 140, width = 200, height = 50)
-
-        # create create button 
-        button_create = Button(window, text = "Create",command = lambda: add_new_user(entry_username, entry_password, entry_role))
-        button_create.place(x = 100, y = 200, width = 100, height = 50) 
-        
-        #exit button 
-        button_exit = Button(window, text = "Exit", command = window.destroy) 
-        button_exit.place(x = 200, y = 200, width = 100, height = 50) 
-
-        def add_new_user(entry_username, entry_password, entry_role):
-            username = entry_username.get()
-            password = entry_password.get()
-            roles = entry_role.get()
-            
-            if username == "" or password == "" or roles == "": 
-                mbox.showerror("Error", "PLease fill in all fields")
-                return
-            data = {
-                "username": username, 
-                "password": password, 
-                "roles": roles
-            }
-            api = Api.Admin_Api()
-            check = api.add_new_user(data)
-            if check == -1: 
-                mbox.showerror("Error", "User already existed")
-            else: 
-                mbox.showinfo("Success", "New User created")
-                obj.tree.insert('', 'end', values=(username, password, roles))
