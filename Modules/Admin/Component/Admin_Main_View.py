@@ -6,6 +6,7 @@ import Modules.Admin.Component.Films.Admin_Films_create as apc
 import Modules.Admin.Component.Inventory.Admin_Inventory_create as aic
 import Modules.Admin.Component.Sales.Admin_Sales_create as asc 
 import Modules.Admin.Component.Users.Admin_User_create as auc 
+import Modules.Admin.Component.Admin_Main_View as adv
 import Modules.Login.Login_View as lgv
 
 
@@ -78,9 +79,13 @@ class Admin_Main_View:
                                command=lambda: self.switch_account(), relief="flat")
         self.switch_button.place(x=461.0, y=126.0, width=97.0, height=33.0)
 
-        self.exit_button = Button(image=self.exit_image, borderwidth=0, highlightthickness=0,
+        # self.exit_button = Button(image=self.exit_image, borderwidth=0, highlightthickness=0,
+        #                        command=lambda: self.exit(), relief="flat")
+        # self.exit_button.place(x=576.0, y=126.0, width=97.0, height=33.0)
+
+        self.back_button = Button(image=self.exit_image, borderwidth=0, highlightthickness=0,
                                command=lambda: self.exit(), relief="flat")
-        self.exit_button.place(x=576.0, y=126.0, width=97.0, height=33.0)
+        self.back_button.place(x=576.0, y=126.0, width=97.0, height=33.0)
         self.window.resizable(0, 0)
 
     def click_button(self,button):
@@ -94,10 +99,11 @@ class Admin_Main_View:
             auc.Admin_User_create.generate_users(self) 
 
     def exit(self): 
-            if messagebox.askyesno("Quit", "Are you sure you want to quit?"): 
+            if messagebox.askyesno("Back", "You want to go back main view?"): 
                 self.window.destroy() 
-                exit() 
-            else: 
+                app = adv.Admin_Main_View()
+                app.window.mainloop() 
+            else:
                 return
         
     def switch_account(self): 

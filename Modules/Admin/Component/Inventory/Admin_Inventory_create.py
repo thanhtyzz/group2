@@ -4,7 +4,9 @@ from pathlib import Path
 import Api.Admin_Api as Api
 import Service.Widget_service as ws
 import Modules.Admin.Component.Inventory.Admin_Inventory_process as aip
+import Modules.Admin.Component.Admin_Main_View as adv
 from PIL import ImageTk, Image
+
 
 class Admin_Inventory_create:
     def __init__(self):
@@ -55,15 +57,8 @@ class Admin_Inventory_create:
         Admin_Inventory_create.generate_inventory_button(obj)
         Admin_Inventory_create.generate_inventory_form(obj)
         Admin_Inventory_create.generate_inventory_entry(obj)
+        Admin_Inventory_create.generate_inventory_table(obj)
 
-        image_path = "D:\do-an-cuoi-ki-nhom-2\Images\Admin\Films\letter.png"
-        image = Image.open(image_path)
-        image = image.resize((111, 235))
-        photo = ImageTk.PhotoImage(image)
-        label = Label(obj.formframe1, image=photo)
-        label.image = photo
-        label.place(x=0.0, y=0.0)
-        label.configure(background='#4C4A4A')
 
 
     @staticmethod
@@ -100,6 +95,15 @@ class Admin_Inventory_create:
         obj.add_stock_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
         obj.add_stock_entry.place(x=130.0, y=210.0, width=162.0, height=24.0)
 
+        image_path = "D:\do-an-cuoi-ki-nhom-2\Images\Admin\Inventory\letter.png"
+        image = Image.open(image_path)
+        image = image.resize((110, 245))
+        photo = ImageTk.PhotoImage(image)
+        label = Label(obj.formframe1, image=photo)
+        label.image = photo
+        label.place(x=0.0, y=0.0)
+        label.configure(background='#4C4A4A')
+
     @staticmethod
     def generate_inventory_entry(obj): 
         # create form in form frame
@@ -130,11 +134,12 @@ class Admin_Inventory_create:
 
         obj.search_button = Button(image=obj.search_image, borderwidth=0, highlightthickness=0,
                                command=lambda: aip.Admin_Inventory_Process.search_button_handle(obj))
-        obj.search_button.place(x=510.0, y=174.5, width=65.0, height=24.0)
+        obj.search_button.place(x=520.0, y=174.5, width=65.0, height=24.0)
 
         obj.reset_button = Button(image=obj.reset_image, borderwidth=0, highlightthickness=0,
                                command=lambda: aip.Admin_Inventory_Process.reset_button_handle(obj))
-        obj.reset_button.place(x=590.0, y=174.5, width=65.0, height=24.0)
+        obj.reset_button.place(x=595.0, y=174.5, width=65.0, height=24.0)
+
 
     @staticmethod
     def generate_inventory_table(obj):
@@ -151,34 +156,37 @@ class Admin_Inventory_create:
                 obj.stock.set(cur['values'][5])
             except:
                 pass
-
+    
         # create tree view
-        obj.tree = ttk.Treeview(obj.tableframe, columns = ('Film_ID', 'Film', 'Genre',
-                                                         'Showtime', 'Price', 'Stock'))
+        obj.tree = ttk.Treeview(obj.formframe3, columns=('Film_ID', 'Film', 'Genre', 'Showtime', 'Price', 'Stock'))
         obj.tree.heading('#0')
-        obj.tree.heading('#1', text ='Film_ID') 
-        obj.tree.heading('#2', text = 'Film')
-        obj.tree.heading('#3', text = 'Genre')
-        obj.tree.heading('#4', text = 'Showtime')
-        obj.tree.heading('#5', text = 'Price')
-        obj.tree.heading('#6', text = 'Stock')
+        obj.tree.heading('#1', text='Film_ID')
+        obj.tree.heading('#2', text='Film')
+        obj.tree.heading('#3', text='Genre')
+        obj.tree.heading('#4', text='Showtime')
+        obj.tree.heading('#5', text='Price')
+        obj.tree.heading('#6', text='Stock')
 
-        obj.tree.column('#0', width = 0)
-        obj.tree.column('#1', width = 40)
-        obj.tree.column('#2', width = 100)
-        obj.tree.column('#3', width = 170)
-        obj.tree.column('#4', width = 110)
-        obj.tree.column('#5', width = 110)
-        obj.tree.column('#6', width = 70)
+        obj.tree.column('#0', width=0)
+        obj.tree.column('#1', width=50)
+        obj.tree.column('#2', width=100)
+        obj.tree.column('#3', width=95)
+        obj.tree.column('#4', width=70)
+        obj.tree.column('#5', width=40)
+        obj.tree.column('#6', width=58)
         obj.tree.bind("<<TreeviewSelect>>", clickprodtable)
-        obj.tree.grid(row = 1, column = 0, columnspan = 6)
 
         # create scroll bar
-        obj.scrollbary = ttk.Scrollbar(obj.tableframe, orient = VERTICAL, command = obj.tree.yview)
-        obj.scrollbary.grid(row = 1, column = 6)
+        obj.scrollbary = ttk.Scrollbar(obj.tableframe, orient=VERTICAL, command=obj.tree.yview)
+
+        obj.tree.pack(side=RIGHT, fill=BOTH)
+        obj.scrollbary.pack(side=RIGHT, fill=Y)
 
         api = Api.Admin_Api()
         products = api.get_all_warehouse_data()
 
-        for product in products: 
-            obj.tree.insert('', 'end', values = (product['Product_id'], product['Product_name'], product['Description'], product['Category'], product['Price'], product['Stock']))
+        for product in products:
+            obj.tree.insert('', 'end', values=(product['Film_ID'], product['Film'], product['Genre'], product['Showtime'], product['Price'], product['Stock']))
+            
+        return obj.tree
+
