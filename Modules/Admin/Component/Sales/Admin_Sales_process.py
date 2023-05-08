@@ -1,17 +1,18 @@
 from tkinter import *
 import Api.Admin_Api as Api
 from datetime import datetime
+import Modules.Admin.Component.Sales.Admin_Sales_create as asc
 import matplotlib.pyplot as plt
 import seaborn as sns
 import warnings
 
 
-class Admin_Sales_Process:
+class Admin_Sales_process:
 
     @staticmethod
     def search_button_handle(obj):
         api = Api.Admin_Api()
-        search = obj.searchentry.get()
+        search = obj.entry_2.get()
 
         for i in obj.tree.get_children():
             obj.tree.delete(i)
