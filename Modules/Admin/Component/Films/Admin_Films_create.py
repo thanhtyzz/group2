@@ -24,9 +24,6 @@ class Admin_Films_create:
         self.canvas.place(x=0, y=0)
 
     @staticmethod
-
-
-    @staticmethod
     def generate_films(obj):
         # Xóa các frame hiện tại
         for frame in obj.allframes:

@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter.ttk import Treeview
 from pathlib import Path
 from tkinter import messagebox
 import Modules.Admin.Component.Films.Admin_Films_create as apc
@@ -12,6 +13,21 @@ class Admin_Main_View:
     
     def __init__(self):
         self.window = Tk()
+
+        self.tableframe = Frame()
+
+        # Khởi tạo cây (tree)
+        self.tree = Treeview(self.window)
+        # Cấu hình và thêm các cột cho cây
+        self.tree["columns"] = ("column1", "column2")
+        self.tree.heading("#0", text="ID")
+        self.tree.heading("column1", text="Name")
+        self.tree.heading("column2", text="Quantity")
+        # Thêm dữ liệu vào cây
+        self.tree.insert("", "end", text="1", values=("Film 1", "10"))
+        self.tree.insert("", "end", text="2", values=("Film 2", "5"))
+        # Hiển thị cây
+        self.tree.pack()
         # get screen width and height
         self.screen_width = self.window.winfo_screenwidth()
         self.screen_height = self.window.winfo_screenheight()

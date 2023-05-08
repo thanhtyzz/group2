@@ -14,9 +14,9 @@ class Admin_Inventory_Process:
         genre = obj.genre_entry.get()
         price = obj.price_entry.get()
         showtime = obj.showtime_entry.get()
-        current_stock = obj.current_stock_entry.get()
+        stock = obj.stock_entry.get()
         add_stock = obj.add_stock_entry.get()
-        if film == '' or genre == '' or showtime == '' or price == '' or current_stock == '' or add_stock == '':
+        if film == '' or genre == '' or showtime == '' or price == '' or stock == '' or add_stock == '':
             return 0
         else:
             json_data = {
@@ -24,7 +24,7 @@ class Admin_Inventory_Process:
                 'Genre': f'{genre}',
                 'Price': f'{price}',
                 'Showtime': f'{showtime}',
-                'Stock': f'{int(current_stock) + int(add_stock)}',}
+                'Stock': f'{int(stock) + int(add_stock)}',}
             return json_data
 
     @staticmethod
@@ -63,7 +63,7 @@ class Admin_Inventory_Process:
     def remove_button_handle(obj):
         api = AdminApi.Admin_Api()
         # Get the ID of the selected film in the treeview
-        film_id = obj.tree.item(obj.tree.selection())['values'][0]
+        film_id = obj.tree.item(obj.tree.selection())['values'][1]
         check = api.remove_items(film_id)
         mbox.showinfo('Success', 'Update process completed')
         for item in obj.tree.get_children():

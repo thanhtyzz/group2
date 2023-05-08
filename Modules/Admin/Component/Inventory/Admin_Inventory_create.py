@@ -1,12 +1,12 @@
+from tkinter import ttk
 from tkinter import *
 from pathlib import Path
 import Api.Admin_Api as Api
 import Service.Widget_service as ws
 import Modules.Admin.Component.Inventory.Admin_Inventory_process as aip
+from PIL import ImageTk, Image
 
 class Admin_Inventory_create:
-    
-    @staticmethod
     def __init__(self):
         self.window = Tk()
         # get screen width and height
@@ -19,106 +19,122 @@ class Admin_Inventory_create:
         # set window position
         self.window.geometry("%dx%d+%d+%d" % (self.window_width, self.window_height,
                              (self.screen_width - self.window_width) / 2, (self.screen_height - self.window_height) / 2))
-        self.window.configure(bg="#FFFFFF")
+        self.window.configure(bg="#4C4A4A")
         self.window.title("Admin")
 
-        self.canvas = Canvas(self.window, bg="#FFFFFF", height=492, width=685, bd=0, highlightthickness=0, relief="ridge")
+        self.canvas = Canvas(self.window, bg="#4C4A4A", height=492, width=685, bd=0, highlightthickness=0, relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Component\Inventory")
+    @staticmethod
+    def generate_inventory(obj):
+        # Xóa các frame hiện tại
+        for frame in obj.allframes:
+            frame.destroy()
+        obj.allframes = []
 
-        self.background_img = PhotoImage(file=assets_path / "Background.png")
-        self.films_image = PhotoImage(file=assets_path / "Button_Films.png")
-        self.inventory_image = PhotoImage(file=assets_path / "Button_Inventory.png")
-        self.sales_image = PhotoImage(file=assets_path / "Button_Sales.png")
-        self.users_image = PhotoImage(file=assets_path / "Button_Users.png")
-        self.switch_image = PhotoImage(file=assets_path / "Button_Switch.png")
-        self.exit_image = PhotoImage(file=assets_path / "Button_Exit.png")
-        self.entry_image_1 = PhotoImage(file=assets_path / "Textbox_1.png")
-        self.entry_image_2 = PhotoImage(file=assets_path / "Textbox_2.png")
-        self.update_image = PhotoImage(file=assets_path / "Button_Update.png")
-        self.remove_image = PhotoImage(file=assets_path / "Button_Remove.png")
-        self.search_image = PhotoImage(file=assets_path / "Button_Search.png")
-        self.reset_image = PhotoImage(file=assets_path / "Button_Reset.png")
+        # Tạo frame mới
+        obj.formframe1 = Frame(obj.window, bg='#4C4A4A')
+        obj.formframe1.place(x=15, y=170, width=300, height=250)
+        obj.allframes.append(obj.formframe1)
 
-        self.background = self.background_img.create_image(342.0, 246.0, image=self.background_img)
+        obj.formframe2 = Frame(obj.window, bg='#FFFFFF')
+        obj.formframe2.place(x=325, y=165, width=350, height=50)
+        obj.allframes.append(obj.formframe2)
 
-        self.films_button = Button(image=self.films_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: self.click_button("films"))
-        self.films_button.place(x=10.0, y=124.0, width=97.0, height=37.0)
+        obj.formframe3 = Frame(obj.window, bg='pink')
+        obj.formframe3.place(x=325, y=215, width=350, height=260)
+        obj.allframes.append(obj.formframe3)
 
-        self.inventory_button = Button(image=self.inventory_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: self.click_button("inventory"))
-        self.inventory_button.place(x=118.0, y=125.0, width=102.0, height=35.0)
+        obj.buttonframe = Frame(obj.window, bg="#4C4A4A")
+        obj.buttonframe.place(x=315, y=630, width=450, height=65)
+        obj.allframes.append(obj.buttonframe)
 
-        self.sales_button = Button(image=self.sales_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: self.click_button("sales"))
-        self.sales_button.place(x=233.0, y=126.0, width=97.0, height=33.0)
+        
 
-        self.users_button = Button(image=self.users_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: self.click_button("users"))
-        self.users_button.place(x=349.0, y=126.0, width=97.0, height=33.0)
+        # Tạo các thành phần trong frame
+        Admin_Inventory_create.generate_inventory_button(obj)
+        Admin_Inventory_create.generate_inventory_form(obj)
+        Admin_Inventory_create.generate_inventory_entry(obj)
 
-        self.switch_button = Button(image=self.switch_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: self.switch_account())
-        self.switch_button.place(x=461.0, y=126.0, width=97.0, height=33.0)
+        image_path = "D:\do-an-cuoi-ki-nhom-2\Images\Admin\Films\letter.png"
+        image = Image.open(image_path)
+        image = image.resize((111, 235))
+        photo = ImageTk.PhotoImage(image)
+        label = Label(obj.formframe1, image=photo)
+        label.image = photo
+        label.place(x=0.0, y=0.0)
+        label.configure(background='#4C4A4A')
 
-        self.exit_button = Button(image=self.exit_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: self.exit_button())
-        self.exit_button.place(x=576.0, y=126.0, width=97.0, height=33.0)
 
-        self.update_button = Button(image=self.update_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: aip.Admin_Inventory_process.update_button_handle(self))
-        self.update_button.place(x=42.0, y=446.0, width=104.0, height=28.0)
+    @staticmethod
+    def generate_inventory_form(obj):
+        # create form in form frame
+        obj.product_id = StringVar()
 
-        self.canvas.create_rectangle(325.0, 220.0, 657.0, 472.0, fill="#D9D9D9", outline="")
-       
-        self.entry_1 = self.canvas.create_image(422.0, 195.0, image=self.entry_image_1)
-        self.entry_1 = Entry(bd=0, bg="#FCCBCB", fg="#000716", highlightthickness=0)
-        self.entry_1.place(x=322.0, y=185.0, width=200.0, height=18.0)
+        obj.product_id.get()
+        
+        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Inventory")
+        
+        obj.background_img = PhotoImage(file=assets_path / "Background.png")
+        obj.background = obj.canvas.create_image(342.0, 246.0, image=obj.background_img)
 
-        self.entry_2 = self.canvas.create_image(216.0, 399.0, image=self.entry_image_2)
-        self.entry_2 = Entry(bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        self.entry_2.place( x=141.0, y=386.0, width=150.0, height=24.0)
+        obj.entry_image = PhotoImage(file=assets_path / "Textbox_2.png")
+        obj.film_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0, textvariable = obj.product_id)
+        obj.film_entry.place(x=130.0, y=10.0, width=162.0, height=24.0)
 
-        self.entry_3 = self.canvas.create_image(216.0, 361.0, image=self.entry_image_2)
-        self.entry_3 = Entry(bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        self.entry_3.place(x=141.0, y=348.0, width=150.0, height=24.0)
+        obj.film_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        obj.film_entry.place(x=130.0, y=50.0, width=162.0, height=24.0)
 
-        self.entry_4 = self.canvas.create_image(216.0, 323.0, image=self.entry_image_2)
-        self.entry_4 = Entry(bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        self.entry_4.place(x=141.0, y=310.0, width=150.0, height=24.108795166015625)
+        obj.genre_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        obj.genre_entry.place(x=130.0, y=90.0, width=162.0, height=24.0)
 
-        self.entry_5 = self.canvas.create_image(400.5, 246.0, image=self.entry_image_2)
-        self.entry_5 = Entry(bd=0, bg="D9D9D9", fg="#000716", highlightthickness=0)
-        self.entry_5.place(x=141.0, y=272.0, width=150.0, height=24.108795166015625)
+        obj.showtime_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        obj.showtime_entry.place(x=130.0, y=130.0, width=162.0, height=24.0)
 
-        self.entry_6 = self.canvas.create_image(400.5, 209.0, image=self.entry_image_2)
-        self.entry_6 = Entry(bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        self.entry_6.place(x=141.0, y=234.0, width=150.0, height=24.108795166015625)
+        obj.price_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        obj.price_entry.place(x=130.0, y=170.0, width=162.0, height=24.0)
 
-        self.entry_7 = self.canvas.create_image(400.5, 209.0, image=self.entry_image_2)
-        self.entry_7 = Entry(bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
-        self.entry_7.place(x=141.0, y=196.0, width=150.0, height=24.108795166015625)
+        obj.stock_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        obj.stock_entry.place(x=130.0, y=210.0, width=162.0, height=24.0)
 
-        self.canvas.create_rectangle(15.0, 181.0, 308.0, 426.0, fill="#4C4A4A", outline="")
-    
-        self.update_button = Button(image=self.update_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: aip.Admin_Inventory_process.update_button_handle(self))
-        self.update_button.place(x=42.0, y=446.0, width=104.0, height=28.0)
+        obj.add_stock_entry = Entry(obj.formframe1, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0)
+        obj.add_stock_entry.place(x=130.0, y=210.0, width=162.0, height=24.0)
 
-        self.remove_button = Button(image=self.remove_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: aip.Admin_Inventory_process.remove_button_handle(self))
-        self.remove_button.place(x=176.0, y=446.0, width=104.0, height=28.0)
+    @staticmethod
+    def generate_inventory_entry(obj): 
+        # create form in form frame
+        obj.product_id = StringVar()
 
-        self.search_button = Button(image=self.search_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: aip.Admin_Inventory_process.search_button_handle(self))
-        self.search_button.place(x=532.0, y=185.0, width=61.0, height=21.0)
+        obj.product_id.get()
+        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Inventory")
+        obj.entry_image = PhotoImage(file=assets_path / "Textbox_1.png")
+        obj.film_entry = Entry(obj.formframe2, bd=0, bg="pink", fg="#000716", highlightthickness=0, textvariable = obj.product_id)
+        obj.film_entry.place(x=2.0, y=10.0, width=180.0, height=24.0)
+        
+    @staticmethod
+    def generate_inventory_button(obj):
+        assets_path = Path(r"D:\do-an-cuoi-ki-nhom-2\Images\Admin\Inventory")
 
-        self.reset_button = Button(image=self.reset_image, borderwidth=0, highlightthickness=0,
-                               command=lambda: aip.Admin_Inventory_process.reset_button_handle(self))
-        self.reset_button.place(x=603.0, y=185.0, width=61.0, height=21.0)
-        self.window.resizable(0, 0)
+        obj.update_image = PhotoImage(file=assets_path / "Button_Update.png")
+        obj.remove_image = PhotoImage(file=assets_path / "Button_Remove.png")
+        obj.search_image = PhotoImage(file=assets_path / "Button_Search.png")
+        obj.reset_image = PhotoImage(file=assets_path / "Button_Reset.png")
+
+        obj.update_button = Button(image=obj.update_image, borderwidth=0, highlightthickness=0,
+                               command=lambda: aip.Admin_Inventory_Process.update_button_handle(obj))
+        obj.update_button.place(x=50.0, y=430.0, width=104.0, height=28.0)
+
+        obj.remove_button = Button(image=obj.remove_image, borderwidth=0, highlightthickness=0,
+                               command=lambda: aip.Admin_Inventory_Process.remove_button_handle(obj))
+        obj.remove_button.place(x=170.0, y=430.0, width=104.0, height=28.0)
+
+        obj.search_button = Button(image=obj.search_image, borderwidth=0, highlightthickness=0,
+                               command=lambda: aip.Admin_Inventory_Process.search_button_handle(obj))
+        obj.search_button.place(x=510.0, y=174.5, width=65.0, height=24.0)
+
+        obj.reset_button = Button(image=obj.reset_image, borderwidth=0, highlightthickness=0,
+                               command=lambda: aip.Admin_Inventory_Process.reset_button_handle(obj))
+        obj.reset_button.place(x=590.0, y=174.5, width=65.0, height=24.0)
 
     @staticmethod
     def generate_inventory_table(obj):
@@ -128,20 +144,20 @@ class Admin_Inventory_create:
             cur = obj.tree.item(cur)
             try:
                 obj.selected_film = cur['values']
-                obj.film.set(cur['values'][1])
+                obj.film_name.set(cur['values'][1])
                 obj.genre.set(cur['values'][2])
                 obj.showtime.set(cur['values'][3])
                 obj.price.set(cur['values'][4])
-                obj.current_stock.set(cur['values'][5])
+                obj.stock.set(cur['values'][5])
             except:
                 pass
 
         # create tree view
-        obj.tree = ttk.Treeview(obj.tableframe, columns = ('ID', 'Name', 'Genre',
+        obj.tree = ttk.Treeview(obj.tableframe, columns = ('Film_ID', 'Film', 'Genre',
                                                          'Showtime', 'Price', 'Stock'))
         obj.tree.heading('#0')
-        obj.tree.heading('#1', text ='ID') 
-        obj.tree.heading('#2', text = 'Name')
+        obj.tree.heading('#1', text ='Film_ID') 
+        obj.tree.heading('#2', text = 'Film')
         obj.tree.heading('#3', text = 'Genre')
         obj.tree.heading('#4', text = 'Showtime')
         obj.tree.heading('#5', text = 'Price')
@@ -162,7 +178,7 @@ class Admin_Inventory_create:
         obj.scrollbary.grid(row = 1, column = 6)
 
         api = Api.Admin_Api()
-        films = api.get_all_warehouse_data()
+        products = api.get_all_warehouse_data()
 
-        for film in films: 
-            obj.tree.insert('', 'end', values = (film['film_id'], film['film'], film['Genre'], film['Showtime'], film['Price'], film['Stock']))
+        for product in products: 
+            obj.tree.insert('', 'end', values = (product['Product_id'], product['Product_name'], product['Description'], product['Category'], product['Price'], product['Stock']))
